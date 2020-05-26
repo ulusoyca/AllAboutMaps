@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 Cagatay Ulusoy (Ulus Oy Apps). All rights reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+    <!-- Regular text -->
+    <style name="Body.Large" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+    </style>
+
+    <style name="Body.Medium" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+    <style name="Body.Medium.Light" parent="Body.Medium">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">sans-serif-condensed-light</item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+    </style>
+
+    <style name="Body.Small" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="Body.XSmall" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:textSize">@dimen/textsize_xsmall</item>
+    </style>
+
+    <!-- Headers -->
+
+    <style name="Header.Large" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+    </style>
+
+    <style name="Header.Small" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/textsize_xsmall</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Main header component -->
+
+    <style name="MainHeader" parent="@style/Header.Small">
+        <item name="android:gravity">bottom|center</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:lines">2</item>
+    </style>
+
+    <style name="MainHeader.Narrow">
+        <item name="android:paddingStart">@dimen/size_spacing_xxlarge</item>
+        <item name="android:paddingEnd">@dimen/size_spacing_xxlarge</item>
+    </style>
+
+
+    <!-- Sub header -->
+
+    <style name="SubHeader" parent="@style/Header.Small">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">@dimen/size_spacing_small</item>
+        <item name="android:paddingBottom">@dimen/size_spacing_small</item>
+        <item name="android:paddingStart">@dimen/size_spacing_medium</item>
+        <item name="android:paddingEnd">@dimen/size_spacing_medium</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+
+    <!-- Data labels -->
+
+    <style name="Data.XXLarge" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/textsize_data_xxlarge</item>
+    </style>
+
+    <style name="Data.XLarge" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/textsize_data_xlarge</item>
+    </style>
+
+    <style name="Data.Large" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">@dimen/textsize_data_large</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Data.Medium" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">@dimen/textsize_data_medium</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Data.Small" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/textsize_data_small</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Data.XSmall" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textSize">@dimen/textsize_data_xsmall</item>
+    </style>
+
+    <style name="Data.XXSmall" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textSize">@dimen/textsize_data_xxsmall</item>
+    </style>
+
+</resources>

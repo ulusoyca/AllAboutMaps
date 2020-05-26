@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.home
+package com.ulusoy.allaboutmaps.main.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import javax.inject.Inject
-import javax.inject.Named
+import com.ulusoy.allaboutmaps.FragmentScope
+import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
-class HomeViewModel
-@Inject constructor() : ViewModel()
+@Module
+abstract class HomeFragmentModule {
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [HomeModule::class])
+    abstract fun bindInfinitiveFragment(): HomeFragment
+}

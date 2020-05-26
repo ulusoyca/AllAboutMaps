@@ -1,0 +1,33 @@
+<!--
+  ~ Copyright 2020 Cagatay Ulusoy (Ulus Oy Apps). All rights reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <!-- Dimensions for generic spacings.
+    These can be used for paddings and margins, but also for view heights and widths. -->
+    <dimen name="size_spacing_xxxxxlarge">64dp</dimen>
+    <dimen name="size_spacing_xxxxlarge">56dp</dimen>
+    <dimen name="size_spacing_xxxlarge">48dp</dimen>
+    <dimen name="size_spacing_xxlarge">40dp</dimen>
+    <dimen name="size_spacing_xlarge">32dp</dimen>
+    <dimen name="size_spacing_large">24dp</dimen>
+    <dimen name="size_spacing_medium">16dp</dimen>
+    <dimen name="size_spacing_smaller">12dp</dimen>
+    <dimen name="size_spacing_small">8dp</dimen>
+    <dimen name="size_spacing_xsmall">4dp</dimen>
+    <dimen name="size_spacing_xxsmall">2dp</dimen>
+    <dimen name="size_spacing_xxxsmall">1dp</dimen>
+    <dimen name="size_spacing_zero">0dp</dimen>
+</resources>

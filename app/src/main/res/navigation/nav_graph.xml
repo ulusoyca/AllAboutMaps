@@ -21,8 +21,15 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.ulusoy.allaboutmaps.home.HomeFragment"
+        android:name="com.ulusoy.allaboutmaps.main.home.HomeFragment"
         android:label="fragmentHome"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_gpxFragment2"
+            app:destination="@id/gpxFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/gpxFragment2"
+        android:name="com.ulusoy.allaboutmaps.main.gpx.GpxFragment"
+        android:label="GpxFragment" />
 </navigation>

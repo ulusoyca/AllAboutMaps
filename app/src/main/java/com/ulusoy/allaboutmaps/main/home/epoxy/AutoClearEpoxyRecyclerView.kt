@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.home
+package com.ulusoy.allaboutmaps.main.home.epoxy
 
 import android.content.Context
-import androidx.lifecycle.ViewModel
-import com.ulusoy.allaboutmaps.FragmentScope
-import com.ulusoy.allaboutmaps.R
-import com.ulusoy.allaboutmaps.ViewModelKey
-import dagger.Binds
-import dagger.Module
-import dagger.Provides
-import dagger.multibindings.IntoMap
-import javax.inject.Named
+import android.util.AttributeSet
+import com.airbnb.epoxy.EpoxyRecyclerView
 
-@Module
-abstract class HomeModule {
-    @FragmentScope
-    @Binds
-    @IntoMap
-    @ViewModelKey(HomeViewModel::class)
-    /* Note: the return type should be ViewModel */
-    abstract fun bindViewModel(viewModel: HomeViewModel): ViewModel
+/**
+ * [EpoxyRecyclerView] that makes sure adapter reference is removed straight away [onDetachedFromWindow]
+ * You may not want to use this for nested RecyclerViews.
+ * see. https://github.com/airbnb/epoxy/wiki/Avoiding-Memory-Leaks
+ */
+class AutoClearEpoxyRecyclerView
+@JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : EpoxyRecyclerView(context, attrs, defStyleAttr) {
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        adapter = null
+    }
 }

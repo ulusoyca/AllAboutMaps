@@ -14,15 +14,7 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.home
+@EpoxyDataBindingPattern(rClass = R.class, layoutPrefix = "item_list")
+package com.ulusoy.allaboutmaps;
 
-import com.ulusoy.allaboutmaps.FragmentScope
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
-
-@Module
-abstract class HomeFragmentModule {
-    @FragmentScope
-    @ContributesAndroidInjector(modules = [HomeModule::class])
-    abstract fun bindInfinitiveFragment(): HomeFragment
-}
+import com.airbnb.epoxy.EpoxyDataBindingPattern;

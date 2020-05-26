@@ -17,7 +17,6 @@
 package com.ulusoy.allaboutmaps
 
 import android.content.Context
-import com.ulusoy.allaboutmaps.AllAboutMapsApp
 import dagger.Binds
 import dagger.Module
 

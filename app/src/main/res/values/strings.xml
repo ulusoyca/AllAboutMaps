@@ -16,4 +16,9 @@
 
 <resources>
     <string name="app_name">All About Maps</string>
+    <string name="title_route_from_gpx">Draw route from GPX file</string>
+    <string name="description_route_from_gpx">In this tutorial we will first parse the route points from a gpx file and then show the route with waypoints on map.</string>
+    <string name="mapbox">mapbox</string>
+    <string name="google">google</string>
+    <string name="huawei">huawei</string>
 </resources>

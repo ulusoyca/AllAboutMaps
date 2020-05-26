@@ -14,23 +14,27 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps
+package com.ulusoy.allaboutmaps.main.home
 
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
-import timber.log.Timber
+import com.ulusoy.allaboutmaps.R
+import com.ulusoy.allaboutmaps.main.Topic
+import dagger.Module
+import dagger.Provides
+import javax.inject.Named
 
-class AllAboutMapsApp : DaggerApplication() {
-    private val appComponent: AndroidInjector<AllAboutMapsApp> by lazy {
-        DaggerAppComponent.factory().create(this)
-    }
+const val NAMED_TOPICS = "home_map_topics"
 
-    override fun onCreate() {
-        super.onCreate()
-        Timber.plant(Timber.DebugTree())
-    }
-
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return appComponent
+@Module
+abstract class HomeModule {
+    companion object {
+        @Provides
+        @Named(NAMED_TOPICS)
+        fun provideTopicNames(): List<Topic> = listOf(
+            Topic(
+                title = R.string.title_route_from_gpx,
+                description = R.string.description_route_from_gpx,
+                image = android.R.drawable.zoom_plate
+            )
+        )
     }
 }

@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.home
+package com.ulusoy.allaboutmaps.main.home
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.ulusoy.allaboutmaps.databinding.FragmentHomeBinding
+import com.ulusoy.allaboutmaps.main.Topic
+import com.ulusoy.allaboutmaps.main.home.epoxy.HomeEpoxyController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+import javax.inject.Named
 
-class HomeFragment : DaggerFragment() {
+class HomeFragment : DaggerFragment(), TopicSelectedListener {
 
     private lateinit var binding: FragmentHomeBinding
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val viewModel: HomeViewModel by viewModels { viewModelFactory }
+    @Named(NAMED_TOPICS)
+    lateinit var topics: List<Topic>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,5 +47,13 @@ class HomeFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val controller = HomeEpoxyController(
+            topics = topics,
+            topicSelectedListener = this@HomeFragment
+        )
+        binding.recyclerView.setController(controller)
+    }
+
+    override fun onTopicSelected(topicTitle: Int) {
     }
 }

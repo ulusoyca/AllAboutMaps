@@ -16,7 +16,6 @@
 
 package com.ulusoy.allaboutmaps
 
-
 import com.ulusoy.allaboutmaps.main.MainActivityModule
 import dagger.Module
 
