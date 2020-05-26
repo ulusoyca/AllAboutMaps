@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2020 Cagatay Ulusoy (Ulus Oy Apps). All rights reserved.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +13,15 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-
-    <color name="map_route_cst_line_color">#F459BC</color>
-    <color name="map_route_cmt_line_color">#FFD453</color>
-    <color name="map_route_cut_line_color">#63D4FF</color>
-</resources>
+<com.mapbox.mapboxsdk.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mapView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    mapbox:mapbox_compassAnimationEnabled="false"
+    mapbox:mapbox_cameraTargetLat="38.631155965849757"
+    mapbox:mapbox_cameraTargetLng="34.909409992396832"
+    mapbox:mapbox_cameraZoom="10.0"
+    mapbox:mapbox_uiAttribution="false"
+    mapbox:mapbox_uiLogo="false"
+    mapbox:mapbox_uiRotateGestures="false" />

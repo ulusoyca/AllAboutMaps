@@ -1,0 +1,24 @@
+<!--
+  ~ Copyright 2020 Cagatay Ulusoy (Ulus Oy Apps). All rights reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector android:height="24dp" android:viewportHeight="150"
+    android:viewportWidth="150" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#1a73e8" android:pathData="M89.77,10.4c-4.4,-1.39 -9.08,-2.15 -13.94,-2.15c-14.18,0 -26.87,6.41 -35.33,16.48l21.8,18.34L89.77,10.4z"/>
+    <path android:fillColor="#ea4335" android:pathData="M40.49,24.73c-6.74,8.02 -10.81,18.37 -10.81,29.66c0,8.68 1.73,15.71 4.57,22.01l28.04,-33.33L40.49,24.73z"/>
+    <path android:fillColor="#4285f4" android:pathData="M75.83,36.75c9.75,0 17.65,7.9 17.65,17.65c0,4.34 -1.57,8.32 -4.17,11.39c0,0 13.94,-16.58 27.47,-32.66c-5.59,-10.75 -15.28,-19.02 -27,-22.73L62.29,43.07C65.53,39.2 70.39,36.75 75.83,36.75"/>
+    <path android:fillColor="#fbbc04" android:pathData="M75.83,72.04c-9.75,0 -17.65,-7.9 -17.65,-17.65c0,-4.31 1.55,-8.26 4.11,-11.33L34.25,76.4c4.79,10.63 12.76,19.16 20.97,29.91L89.3,65.79C86.07,69.61 81.23,72.04 75.83,72.04"/>
+    <path android:fillColor="#34a853" android:pathData="M88.63,117.37c15.39,-24.07 33.34,-35 33.34,-62.98c0,-7.67 -1.88,-14.9 -5.19,-21.26l-61.55,73.18c2.61,3.42 5.24,7.06 7.81,11.07c9.36,14.46 6.76,23.13 12.8,23.13C81.86,140.51 79.27,131.83 88.63,117.37"/>
+</vector>

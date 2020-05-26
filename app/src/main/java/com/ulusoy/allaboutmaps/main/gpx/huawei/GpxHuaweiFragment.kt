@@ -14,21 +14,27 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.gpx
+package com.ulusoy.allaboutmaps.main.gpx.huawei
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.ulusoy.allaboutmaps.R
-import com.ulusoy.allaboutmaps.databinding.FragmentGpxBinding
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import com.ulusoy.allaboutmaps.databinding.FragmentGpxHuaweiBinding
+import com.ulusoy.allaboutmaps.main.gpx.GpxViewModel
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class GpxFragment : DaggerFragment() {
+class GpxHuaweiFragment : DaggerFragment() {
 
-    private lateinit var binding: FragmentGpxBinding
+    private lateinit var binding: FragmentGpxHuaweiBinding
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: GpxViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,13 +42,11 @@ class GpxFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentGpxBinding.inflate(inflater, container, false)
+        binding = FragmentGpxHuaweiBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController = requireActivity().findNavController(R.id.gpx_parser_nav_host_fragment)
-        binding.bottomNav.setupWithNavController(navController)
     }
 }

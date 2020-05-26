@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.gpx
+package com.ulusoy.allaboutmaps.main.gpx.google
 
 import com.ulusoy.allaboutmaps.FragmentScope
+import com.ulusoy.allaboutmaps.main.gpx.GpxModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class GpxFragmentModule {
+abstract class GpxGoogleFragmentModule {
     @FragmentScope
-    @ContributesAndroidInjector()
-    abstract fun bindConjugationFragment(): GpxFragment
+    @ContributesAndroidInjector(modules = [GpxModule::class])
+    abstract fun bindConjugationFragment(): GpxGoogleFragment
 }

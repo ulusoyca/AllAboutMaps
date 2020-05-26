@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright 2020 Cagatay Ulusoy (Ulus Oy Apps). All rights reserved.
   ~
@@ -15,12 +14,20 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-
-    <color name="map_route_cst_line_color">#F459BC</color>
-    <color name="map_route_cmt_line_color">#FFD453</color>
-    <color name="map_route_cut_line_color">#63D4FF</color>
-</resources>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mapboxFragment"
+        android:icon="@drawable/ic_mapbox_logo"
+        android:title="@string/mapbox"
+        android:contentDescription="@string/mapbox" />
+    <item
+        android:id="@+id/googleFragment"
+        android:icon="@drawable/ic_google_logo"
+        android:title="@string/google"
+        android:contentDescription="@string/google" />
+    <item
+        android:id="@+id/huaweiFragment"
+        android:icon="@drawable/ic_huawei_logo"
+        android:contentDescription="@string/huawei"
+        android:title="@string/huawei" />
+</menu>

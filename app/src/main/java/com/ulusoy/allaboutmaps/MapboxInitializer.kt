@@ -14,15 +14,23 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.gpx
+package com.ulusoy.allaboutmaps
 
-import com.ulusoy.allaboutmaps.FragmentScope
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import android.content.Context
+import android.os.SystemClock
+import com.mapbox.mapboxsdk.Mapbox
+import timber.log.Timber
 
-@Module
-abstract class GpxFragmentModule {
-    @FragmentScope
-    @ContributesAndroidInjector()
-    abstract fun bindConjugationFragment(): GpxFragment
+class MapboxInitializer(
+    private val context: Context
+) {
+    fun initialize() {
+        if (Mapbox.hasInstance()) {
+            return
+        }
+        val startTime = SystemClock.elapsedRealtime()
+        Mapbox.getInstance(context, context.getString(R.string.mapbox_api_key))
+        val endTime = SystemClock.elapsedRealtime()
+        Timber.d("It took ${endTime - startTime} millisecs to initialize Mapbox")
+    }
 }

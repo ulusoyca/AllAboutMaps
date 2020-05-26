@@ -16,13 +16,10 @@
 
 package com.ulusoy.allaboutmaps.main.gpx
 
-import com.ulusoy.allaboutmaps.FragmentScope
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import com.mapbox.mapboxsdk.geometry.LatLng as MapboxLatLng
+import com.ulusoy.allaboutmaps.domain.entities.LatLng as DomainLatLng
 
-@Module
-abstract class GpxFragmentModule {
-    @FragmentScope
-    @ContributesAndroidInjector()
-    abstract fun bindConjugationFragment(): GpxFragment
-}
+fun DomainLatLng.toMapboxLatLng() = MapboxLatLng(
+    latitude.value.toDouble(),
+    longitude.value.toDouble()
+)

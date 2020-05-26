@@ -15,7 +15,14 @@
   -->
 
 <resources>
-    <string name="mapbox" translatable="false">mapbox</string>
-    <string name="google" translatable="false">google</string>
-    <string name="huawei" translatable="false">huawei</string>
+    <string name="mapbox" translatable="false">Mapbox</string>
+    <string name="google" translatable="false">Google</string>
+    <string name="huawei" translatable="false">Huawei</string>
+
+    <string name="mapbox_api_key" translatable="false">
+pk.eyJ1IjoidWx1c295Y2EiLCJhIjoiY2s4eGFybXk1MDQ4bDNxcGhheTdmMjdmMSJ9.JoWg8gLlH60E0wxru-zFRw
+    </string>
+
+    <string name="map_style"
+        translatable="false">mapbox://styles/ulusoyca/ck91r6g0j1go71ioay466nbau</string>
 </resources>

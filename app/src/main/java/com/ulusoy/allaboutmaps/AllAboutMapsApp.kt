@@ -28,6 +28,7 @@ class AllAboutMapsApp : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
+        MapboxInitializer(this).initialize()
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

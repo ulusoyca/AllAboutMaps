@@ -100,6 +100,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
+    // Mapbox
+    implementation "com.mapbox.mapboxsdk:mapbox-android-sdk:$mapboxSdkVersion"
+    implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:$mapboxAnnotationVersion"
+
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
 

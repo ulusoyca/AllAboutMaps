@@ -21,6 +21,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ulusoy.allaboutmaps.domain.entities.RoutePoint
 import com.ulusoy.allaboutmaps.domain.interactors.ParseGpxFileUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
@@ -31,14 +32,14 @@ class GpxViewModel
     private val parseGpxFileUseCase: ParseGpxFileUseCase
 ) : ViewModel() {
 
-    private val _size = MutableLiveData<Int>()
-    val size: LiveData<Int>
-        get() = _size
+    private val _routePoints = MutableLiveData<List<RoutePoint>>()
+    val routePoints: LiveData<List<RoutePoint>>
+        get() = _routePoints
 
     fun parseGpxFile(@RawRes gpxFileResId: Int) {
         viewModelScope.launch(Dispatchers.Default) {
             val routePoints = parseGpxFileUseCase(gpxFileResId)
-            _size.postValue(routePoints.size)
+            _routePoints.postValue(routePoints)
         }
     }
 }
