@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-rootProject.name='All About Maps'
-include ':app'
-include ':domain'
-include ':gpx'
+package com.ulusoy.allaboutmaps.domain.entities
+
+inline class Latitude(val value: Float)
+inline class Longitude(val value: Float)
+
+data class LatLng(
+    val latitude: Latitude,
+    val longitude: Longitude
+)

@@ -14,7 +14,20 @@
  * limitations under the License.
  */
 
-rootProject.name='All About Maps'
-include ':app'
-include ':domain'
-include ':gpx'
+package com.ulusoy.allaboutmaps.main.gpx
+
+import androidx.lifecycle.ViewModel
+import com.ulusoy.allaboutmaps.FragmentScope
+import com.ulusoy.allaboutmaps.ViewModelKey
+import dagger.Binds
+import dagger.Module
+import dagger.multibindings.IntoMap
+
+@Module
+abstract class GpxModule {
+    @FragmentScope
+    @Binds
+    @IntoMap
+    @ViewModelKey(GpxViewModel::class)
+    abstract fun bindViewModel(viewModel: GpxViewModel): ViewModel
+}

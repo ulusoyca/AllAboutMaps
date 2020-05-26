@@ -17,6 +17,7 @@
 package com.ulusoy.allaboutmaps.main
 
 import com.ulusoy.allaboutmaps.ActivityScope
+import com.ulusoy.allaboutmaps.main.gpx.GpxFragmentModule
 import com.ulusoy.allaboutmaps.main.home.HomeFragmentModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -27,6 +28,7 @@ abstract class MainActivityModule {
     @ContributesAndroidInjector(
         modules = [
             HomeFragmentModule::class,
+            GpxFragmentModule::class,
             MainModule::class
         ]
     )

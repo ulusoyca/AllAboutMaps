@@ -16,6 +16,46 @@
 
 package com.ulusoy.allaboutmaps.main.gpx
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.ulusoy.allaboutmaps.R
+import com.ulusoy.allaboutmaps.databinding.FragmentGpxBinding
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class GpxFragment : DaggerFragment()
+class GpxFragment : DaggerFragment() {
+
+    private lateinit var binding: FragmentGpxBinding
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: GpxViewModel by viewModels { viewModelFactory }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        binding = FragmentGpxBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        with(viewModel) {
+            parseGpxFile(R.raw.cst)
+
+            size.observe(viewLifecycleOwner, Observer {
+                binding.firstTextView.text = it.toString()
+            })
+        }
+    }
+}

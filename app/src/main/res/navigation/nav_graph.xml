@@ -25,11 +25,11 @@
         android:label="fragmentHome"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_home_to_gpxFragment2"
-            app:destination="@id/gpxFragment2" />
+            android:id="@+id/action_home_to_fragmentGpx"
+            app:destination="@id/fragmentGpx" />
     </fragment>
     <fragment
-        android:id="@+id/gpxFragment2"
+        android:id="@+id/fragmentGpx"
         android:name="com.ulusoy.allaboutmaps.main.gpx.GpxFragment"
-        android:label="GpxFragment" />
+        android:label="@string/title_route_from_gpx" />
 </navigation>

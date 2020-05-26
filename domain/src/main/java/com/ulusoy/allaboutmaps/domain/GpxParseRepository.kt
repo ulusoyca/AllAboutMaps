@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-rootProject.name='All About Maps'
-include ':app'
-include ':domain'
-include ':gpx'
+package com.ulusoy.allaboutmaps.domain
+
+import androidx.annotation.RawRes
+import com.ulusoy.allaboutmaps.domain.entities.RoutePoint
+
+interface GpxParseRepository {
+    suspend fun parseGpxFile(@RawRes gpxFileUri: Int): List<RoutePoint>
+}

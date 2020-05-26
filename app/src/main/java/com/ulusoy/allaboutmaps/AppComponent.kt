@@ -16,6 +16,7 @@
 
 package com.ulusoy.allaboutmaps
 
+import com.ulusoy.allaboutmaps.main.di.ParserModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
@@ -29,6 +30,7 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         AppModule::class,
+        ParserModule::class,
         ContributeActivityModule::class,
         ViewModelModule::class
     ]

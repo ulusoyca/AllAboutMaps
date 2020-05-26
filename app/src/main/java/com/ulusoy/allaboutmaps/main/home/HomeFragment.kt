@@ -20,6 +20,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentHomeBinding
 import com.ulusoy.allaboutmaps.main.Topic
 import com.ulusoy.allaboutmaps.main.home.epoxy.HomeEpoxyController
@@ -55,5 +59,14 @@ class HomeFragment : DaggerFragment(), TopicSelectedListener {
     }
 
     override fun onTopicSelected(topicTitle: Int) {
+        val direction: NavDirections? = when (topicTitle) {
+            R.string.title_route_from_gpx -> HomeFragmentDirections.actionHomeToFragmentGpx()
+            else -> null
+        }
+        if (direction == null) {
+            Toast.makeText(context, R.string.not_implemented, Toast.LENGTH_LONG).show()
+        } else {
+            findNavController().navigate(direction)
+        }
     }
 }

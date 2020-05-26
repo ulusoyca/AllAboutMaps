@@ -14,7 +14,15 @@
  * limitations under the License.
  */
 
-rootProject.name='All About Maps'
-include ':app'
-include ':domain'
-include ':gpx'
+package com.ulusoy.allaboutmaps.main.gpx
+
+import com.ulusoy.allaboutmaps.FragmentScope
+import dagger.Module
+import dagger.android.ContributesAndroidInjector
+
+@Module
+abstract class GpxFragmentModule {
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [GpxModule::class])
+    abstract fun bindConjugationFragment(): GpxFragment
+}

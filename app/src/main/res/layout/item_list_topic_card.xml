@@ -18,6 +18,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="topic"
             type="com.ulusoy.allaboutmaps.main.Topic" />
@@ -36,6 +37,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> topicSelectedListener.onTopicSelected(topic.title)}"
             android:orientation="vertical">
 
             <!-- Media -->
@@ -43,9 +45,9 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
-                tools:contentDescription="@string/description_route_from_gpx"
                 android:scaleType="centerCrop"
                 app:imageResource="@{topic.image}"
+                tools:contentDescription="@string/description_route_from_gpx"
                 tools:srcCompat="@android:drawable/zoom_plate" />
 
             <LinearLayout
@@ -57,19 +59,19 @@
                 <!-- Title, secondary and supporting text -->
                 <TextView
                     android:id="@+id/title"
+                    style="@style/MainHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{topic.title}"
-                    style="@style/MainHeader"
                     tools:text="@string/title_route_from_gpx" />
 
                 <TextView
                     android:id="@+id/description"
+                    style="@style/Body.XSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{topic.description}"
                     android:layout_marginTop="@dimen/size_spacing_medium"
-                    style="@style/Body.XSmall"
+                    android:text="@{topic.description}"
                     tools:text="@string/description_route_from_gpx" />
 
             </LinearLayout>

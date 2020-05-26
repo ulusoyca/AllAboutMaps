@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-rootProject.name='All About Maps'
-include ':app'
-include ':domain'
-include ':gpx'
+package com.ulusoy.allaboutmaps.domain.entities
+
+data class RoutePoint(
+    val latitude: Latitude,
+    val longitude: Longitude,
+    val altitude: Float
+) {
+    val latLng: LatLng
+        get() = LatLng(latitude, longitude)
+}

@@ -14,7 +14,16 @@
  * limitations under the License.
  */
 
-rootProject.name='All About Maps'
-include ':app'
-include ':domain'
-include ':gpx'
+package com.ulusoy.allaboutmaps.main.di
+
+import com.ulusoy.allaboutmaps.domain.GpxParseRepository
+import com.ulusoy.allaboutmaps.gpx.GpxParser
+import dagger.Binds
+import dagger.Module
+
+@Module
+abstract class ParserModule {
+    // Use @Binds to tell Dagger which implementation it needs to use when providing an interface.
+    @Binds
+    abstract fun provideParserRepository(repository: GpxParser): GpxParseRepository
+}

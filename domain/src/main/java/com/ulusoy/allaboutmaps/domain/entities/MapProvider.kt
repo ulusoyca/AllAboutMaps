@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-rootProject.name='All About Maps'
-include ':app'
-include ':domain'
-include ':gpx'
+package com.ulusoy.allaboutmaps.domain.entities
+
+enum class MapProvider {
+    GOOGLE,
+    HUAWEI,
+    MAPBOX
+}
