@@ -1,0 +1,21 @@
+<!--
+  ~ Copyright 2020 Cagatay Ulusoy (Ulus Oy Apps). All rights reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector android:height="24dp" android:viewportHeight="178"
+    android:viewportWidth="178" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#ffffff" android:pathData="M88.9,0.1C39.8,0.1 0,39.9 0,89C0,138.1 39.8,177.9 88.9,177.9C138,177.9 177.8,138.1 177.8,89C177.8,39.9 138,0.1 88.9,0.1ZM131.1,110.8C100.7,141.2 46.4,131.5 46.4,131.5C46.4,131.5 36.6,77.3 67.1,46.8C84,29.9 112,30.6 129.7,48.2C147.4,65.8 148,93.9 131.1,110.8Z"/>
+    <path android:fillColor="#ffffff" android:pathData="M99.1,52.2L90.4,70.1L72.5,78.8L90.4,87.5L99.1,105.4L107.8,87.5L125.7,78.8L107.8,70.1L99.1,52.2Z"/>
+</vector>

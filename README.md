@@ -10,9 +10,11 @@
 
 > All About Maps is a project to demonstrate and compare Maps SDKs and use cases for Android projects in clean architecture. Currently Google Maps, Mapbox Maps, and Huawei Maps are included in this project.
 
-Target design:
 
-![Screenshots](/app/src/main/res/mipmap-xxhdpi/Screenshots.png)
+![Screenshots](Screenshots/home_1.png)
+
+
+![Screenshots](Screenshots/gpx_1.png)
 ## Author
 
 👤 **Cagatay Ulusoy (Ulus Oy Apps)**
