@@ -21,7 +21,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ulusoy.allaboutmaps.domain.entities.RoutePoint
+import com.ulusoy.allaboutmaps.domain.entities.Point
 import com.ulusoy.allaboutmaps.domain.interactors.ParseGpxFileUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
@@ -32,14 +32,19 @@ class GpxViewModel
     private val parseGpxFileUseCase: ParseGpxFileUseCase
 ) : ViewModel() {
 
-    private val _routePoints = MutableLiveData<List<RoutePoint>>()
-    val routePoints: LiveData<List<RoutePoint>>
+    private val _routePoints = MutableLiveData<List<Point>>()
+    val routePoints: LiveData<List<Point>>
         get() = _routePoints
+
+    private val _waypoints = MutableLiveData<List<Point>>()
+    val waypoints: LiveData<List<Point>>
+        get() = _waypoints
 
     fun parseGpxFile(@RawRes gpxFileResId: Int) {
         viewModelScope.launch(Dispatchers.Default) {
-            val routePoints = parseGpxFileUseCase(gpxFileResId)
-            _routePoints.postValue(routePoints)
+            val routeInfo = parseGpxFileUseCase(gpxFileResId)
+            _routePoints.postValue(routeInfo.routePoints)
+            _waypoints.postValue(routeInfo.wayPoints)
         }
     }
 }

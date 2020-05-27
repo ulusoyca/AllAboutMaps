@@ -33,4 +33,5 @@
 
     <dimen name="mapbox_route_line_width_cut">2px</dimen>
     <dimen name="google_route_line_width_cut">2dp</dimen>
+    <dimen name="huawei_route_line_width_cut">1dp</dimen>
 </resources>

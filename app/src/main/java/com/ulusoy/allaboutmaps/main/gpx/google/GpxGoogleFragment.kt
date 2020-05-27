@@ -20,30 +20,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.JointType
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.*
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxGoogleBinding
+import com.ulusoy.allaboutmaps.domain.entities.LatLng as DomainLatLng
+import com.ulusoy.allaboutmaps.domain.entities.Point
 import com.ulusoy.allaboutmaps.main.extensions.toGoogleLatLng
-import com.ulusoy.allaboutmaps.main.gpx.GpxViewModel
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
-import timber.log.Timber
+import com.ulusoy.allaboutmaps.main.gpx.BaseGpxMapProviderFragment
 
-class GpxGoogleFragment : DaggerFragment() {
+class GpxGoogleFragment : BaseGpxMapProviderFragment() {
 
     private lateinit var binding: FragmentGpxGoogleBinding
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val viewModel: GpxViewModel by viewModels { viewModelFactory }
 
     private var map: GoogleMap? = null
 
@@ -58,59 +46,37 @@ class GpxGoogleFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        mapView = binding.mapView
         super.onViewCreated(view, savedInstanceState)
-        binding.mapView.run {
-            onCreate(savedInstanceState)
-            getMapAsync { onMapReady(it) }
-        }
-
-        with(viewModel) {
-            routePoints.observe(viewLifecycleOwner, Observer { routePoints ->
-                val latLngs = routePoints.map { it.latLng.toGoogleLatLng() }
-                map?.addPolyline(
-                    PolylineOptions()
-                        .color(
-                            ContextCompat.getColor(
-                                requireContext(),
-                                R.color.map_route_cut_line_color
-                            )
-                        )
-                        .jointType(JointType.ROUND)
-                        .width(resources.getDimension(R.dimen.google_route_line_width_cut))
-                        .addAll(latLngs)
-                )
-            })
-        }
+        binding.mapView.getMapAsync { mapboxMap -> onMapReady(mapboxMap) }
     }
 
     private fun onMapReady(map: GoogleMap) {
-        Timber.d("google map style is loaded")
         this.map = map
         val mapStyleOptions = MapStyleOptions.loadRawResourceStyle(
             requireContext(),
             R.raw.google_maps_dark_style
         )
         map.setMapStyle(mapStyleOptions)
-        viewModel.parseGpxFile(R.raw.cut)
+        onMapStyleLoaded()
     }
 
-    override fun onStart() {
-        super.onStart()
-        binding.mapView.onStart()
+    override fun drawRoutePoints(routePoints: List<Point>) {
+        val latLngs = routePoints.map { it.latLng.toGoogleLatLng() }
+        map?.addPolyline(
+            PolylineOptions()
+                .color(mapLineColor)
+                .jointType(JointType.ROUND)
+                .width(resources.getDimension(R.dimen.google_route_line_width_cut))
+                .addAll(latLngs)
+        )
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.mapView.onResume()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        binding.mapView.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.mapView.onDestroy()
+    override fun addWaypoint(latLng: DomainLatLng) {
+        map?.addMarker(
+            MarkerOptions()
+                .icon(BitmapDescriptorFactory.fromBitmap(foodStationIcon))
+                .position(latLng.toGoogleLatLng())
+        )
     }
 }

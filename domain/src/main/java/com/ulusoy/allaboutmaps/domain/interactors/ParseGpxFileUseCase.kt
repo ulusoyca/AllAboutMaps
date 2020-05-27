@@ -18,14 +18,14 @@ package com.ulusoy.allaboutmaps.domain.interactors
 
 import androidx.annotation.RawRes
 import com.ulusoy.allaboutmaps.domain.GpxParseRepository
-import com.ulusoy.allaboutmaps.domain.entities.RoutePoint
+import com.ulusoy.allaboutmaps.domain.entities.RouteInfo
 import javax.inject.Inject
 
 class ParseGpxFileUseCase
 @Inject constructor(
     private val gpxParseRepository: GpxParseRepository
 ) {
-    suspend operator fun invoke(@RawRes gpxFileUri: Int): List<RoutePoint> {
+    suspend operator fun invoke(@RawRes gpxFileUri: Int): RouteInfo {
         return gpxParseRepository.parseGpxFile(gpxFileUri)
     }
 }

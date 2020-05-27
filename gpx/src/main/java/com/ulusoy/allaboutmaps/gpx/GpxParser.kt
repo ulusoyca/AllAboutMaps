@@ -22,9 +22,12 @@ import androidx.annotation.RawRes
 import com.ulusoy.allaboutmaps.domain.GpxParseRepository
 import com.ulusoy.allaboutmaps.domain.entities.Latitude
 import com.ulusoy.allaboutmaps.domain.entities.Longitude
-import com.ulusoy.allaboutmaps.domain.entities.RoutePoint
+import com.ulusoy.allaboutmaps.domain.entities.RouteInfo
+import com.ulusoy.allaboutmaps.domain.entities.Point
 import io.ticofab.androidgpxparser.parser.GPXParser
 import io.ticofab.androidgpxparser.parser.domain.Gpx
+import io.ticofab.androidgpxparser.parser.domain.TrackSegment
+import io.ticofab.androidgpxparser.parser.domain.WayPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.danlew.android.joda.JodaTimeAndroid
@@ -38,22 +41,32 @@ class GpxParser
 ) : GpxParseRepository {
 
     override suspend fun parseGpxFile(gpxFileUri: Int) = withContext(Dispatchers.Default) {
-        val routePoints = mutableListOf<RoutePoint>()
         try {
-            loadGpx(gpxFileUri)?.run {
-                routePoints += getRoutePointsFromTrackStructure()
+            loadGpx(gpxFileUri).run {
+                RouteInfo(
+                    parseRoutePoints(tracks[0].trackSegments),
+                    parseWaypoints(wayPoints)
+                )
             }
-            routePoints
         } catch (e: XmlPullParserException) {
             val reason = "Could not parse the GPX file"
             Timber.w(e, "$reason ${e.message}")
-            emptyList<RoutePoint>()
+            RouteInfo()
         } catch (e: Exception) {
             val reason = "Could not read the GPX file"
             Timber.w(e, "$reason ${e.message}")
-            emptyList<RoutePoint>()
+            RouteInfo()
         }
     }
+
+    private fun parseWaypoints(wayPoints: List<WayPoint>): List<Point> = wayPoints.map {
+            Point(
+                latitude = Latitude(it.latitude.toFloat()),
+                longitude = Longitude(it.longitude.toFloat()),
+                altitude = it.elevation.toFloat(),
+                name = it.name
+            )
+        }
 
     private fun loadGpx(@RawRes gpxFileResId: Int): Gpx {
         JodaTimeAndroid.init(context)
@@ -61,9 +74,9 @@ class GpxParser
         return context.contentResolver.openInputStream(uri).use { GPXParser().parse(it) }
     }
 
-    private fun Gpx.getRoutePointsFromTrackStructure(): List<RoutePoint> {
-        val routePoints = mutableListOf<RoutePoint>()
-        tracks[0].trackSegments.forEachIndexed { index, trackSegment ->
+    private fun parseRoutePoints(trackSegments: MutableList<TrackSegment>): List<Point> {
+        val routePoints = mutableListOf<Point>()
+        trackSegments.forEachIndexed { index, trackSegment ->
             val trackPoints = trackSegment.trackPoints
             if (trackPoints.isEmpty()) {
                 if (index == 0) {
@@ -73,7 +86,7 @@ class GpxParser
                 val filteredTrackPoints = trackPoints
                     .filter { it.longitude != null && it.latitude != null }
                     .map { point ->
-                        RoutePoint(
+                        Point(
                             latitude = Latitude(point.latitude.toFloat()),
                             longitude = Longitude(point.longitude.toFloat()),
                             altitude = point.elevation.toFloat()

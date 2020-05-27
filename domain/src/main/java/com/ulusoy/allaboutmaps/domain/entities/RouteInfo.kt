@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.domain
+package com.ulusoy.allaboutmaps.domain.entities
 
-import androidx.annotation.RawRes
-import com.ulusoy.allaboutmaps.domain.entities.RouteInfo
-
-interface GpxParseRepository {
-    suspend fun parseGpxFile(@RawRes gpxFileUri: Int): RouteInfo
-}
+data class RouteInfo(
+    val routePoints: List<Point> = emptyList(),
+    val wayPoints: List<Point> = emptyList()
+)

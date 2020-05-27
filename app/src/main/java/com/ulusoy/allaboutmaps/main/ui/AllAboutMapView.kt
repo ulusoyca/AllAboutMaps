@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.domain.entities
+package com.ulusoy.allaboutmaps.main.ui
 
-data class RoutePoint(
-    val latitude: Latitude,
-    val longitude: Longitude,
-    val altitude: Float
-) {
-    val latLng: LatLng
-        get() = LatLng(latitude, longitude)
+import android.os.Bundle
+
+interface AllAboutMapView {
+    fun onMapViewCreate(savedInstanceState: Bundle?)
+    fun onMapViewStart()
+    fun onMapViewStop()
+    fun onMapViewResume()
+    fun onMapViewPause()
+    fun onMapViewDestroy()
+    fun onMapViewSaveInstanceState(savedInstanceState: Bundle?)
+    fun onMapViewLowMemory()
 }

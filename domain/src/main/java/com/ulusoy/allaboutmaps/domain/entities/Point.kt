@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.domain
+package com.ulusoy.allaboutmaps.domain.entities
 
-import androidx.annotation.RawRes
-import com.ulusoy.allaboutmaps.domain.entities.RouteInfo
-
-interface GpxParseRepository {
-    suspend fun parseGpxFile(@RawRes gpxFileUri: Int): RouteInfo
+data class Point(
+    val latitude: Latitude,
+    val longitude: Longitude,
+    val altitude: Float,
+    val name: String = ""
+) {
+    val latLng: LatLng
+        get() = LatLng(latitude, longitude)
 }
