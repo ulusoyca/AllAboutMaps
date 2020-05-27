@@ -32,6 +32,13 @@ android {
         versionCode rootProject.ext.version_code
         versionName rootProject.ext.version_name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def secureProps = new Properties()
+        if (file("secure.properties").exists()) {
+            file("secure.properties")?.withInputStream { secureProps.load(it) }
+        }
+        resValue "string", "google_maps_api_key", (secureProps.getProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        resValue "string", "mapbox_api_key", (secureProps.getProperty("MAPBOX_API_KEY") ?: "")
     }
 
     dataBinding {
@@ -103,6 +110,9 @@ dependencies {
     // Mapbox
     implementation "com.mapbox.mapboxsdk:mapbox-android-sdk:$mapboxSdkVersion"
     implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v8:$mapboxAnnotationVersion"
+
+    // GMS
+    implementation "com.google.android.gms:play-services-maps:$gms_maps_version"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"

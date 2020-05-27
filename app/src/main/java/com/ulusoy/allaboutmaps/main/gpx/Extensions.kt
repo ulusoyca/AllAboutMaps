@@ -16,10 +16,16 @@
 
 package com.ulusoy.allaboutmaps.main.gpx
 
+import com.google.android.gms.maps.model.LatLng as GoogleLatLng
 import com.mapbox.mapboxsdk.geometry.LatLng as MapboxLatLng
 import com.ulusoy.allaboutmaps.domain.entities.LatLng as DomainLatLng
 
 fun DomainLatLng.toMapboxLatLng() = MapboxLatLng(
+    latitude.value.toDouble(),
+    longitude.value.toDouble()
+)
+
+fun DomainLatLng.toGoogleLatLng() = GoogleLatLng(
     latitude.value.toDouble(),
     longitude.value.toDouble()
 )

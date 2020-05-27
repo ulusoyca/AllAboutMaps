@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +28,8 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.annotation.LineManager
 import com.mapbox.mapboxsdk.plugins.annotation.LineOptions
+import com.mapbox.mapboxsdk.style.layers.Property
+import com.mapbox.mapboxsdk.utils.ColorUtils
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxMapboxBinding
 import com.ulusoy.allaboutmaps.main.gpx.GpxViewModel
@@ -44,9 +47,6 @@ class GpxMapboxFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    lateinit var lineOptions: LineOptions
-
     private val viewModel: GpxViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
@@ -63,18 +63,22 @@ class GpxMapboxFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.mapView.run {
             onCreate(savedInstanceState)
-            getMapAsync { mapboxMap ->
-                onMapReady(mapboxMap)
-            }
+            getMapAsync { mapboxMap -> onMapReady(mapboxMap) }
         }
 
         with(viewModel) {
-            // Parse each file
-            parseGpxFile(R.raw.cut)
             // Observe the route points for each file
             routePoints.observe(viewLifecycleOwner, Observer { routePoints ->
                 val latLngs = routePoints.map { it.latLng.toMapboxLatLng() }
-                lineManager?.create(lineOptions.withLatLngs(latLngs))
+                val lineOptions = LineOptions().withLineJoin(Property.LINE_JOIN_ROUND)
+                    .withLineColor(
+                        ColorUtils.colorToRgbaString(
+                            ContextCompat.getColor(requireContext(), R.color.map_route_cut_line_color)
+                        )
+                    )
+                    .withLineWidth(requireContext().resources.getDimension(R.dimen.mapbox_route_line_width_cut))
+                    .withLatLngs(latLngs)
+                lineManager?.create(lineOptions)
             })
         }
     }
@@ -82,9 +86,10 @@ class GpxMapboxFragment : DaggerFragment() {
     private fun onMapReady(mapboxMap: MapboxMap) {
         Timber.d("on mapbox map ready")
         mapboxMap.apply {
-            setStyle(Style.Builder().fromUri(getString(R.string.map_style))) {
+            setStyle(Style.Builder().fromUri(getString(R.string.mapbox_dark_map_style))) {
                 Timber.d("mapbox map style is loaded")
                 lineManager = LineManager(binding.mapView, mapboxMap, it)
+                viewModel.parseGpxFile(R.raw.cut)
             }
         }
     }

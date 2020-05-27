@@ -16,16 +16,9 @@
 
 package com.ulusoy.allaboutmaps.main.gpx.mapbox
 
-import android.content.Context
-import androidx.core.content.ContextCompat
-import com.mapbox.mapboxsdk.plugins.annotation.LineOptions
-import com.mapbox.mapboxsdk.style.layers.Property
-import com.mapbox.mapboxsdk.utils.ColorUtils
 import com.ulusoy.allaboutmaps.FragmentScope
-import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.main.gpx.GpxModule
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 
 @Module
@@ -33,15 +26,4 @@ abstract class GpxMapboxFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [GpxModule::class])
     abstract fun bindConjugationFragment(): GpxMapboxFragment
-
-    companion object {
-        @Provides
-        fun provideLineOptions(context: Context): LineOptions = LineOptions().withLineJoin(Property.LINE_JOIN_ROUND)
-            .withLineColor(
-                ColorUtils.colorToRgbaString(
-                    ContextCompat.getColor(context, R.color.map_route_cut_line_color)
-                )
-            )
-            .withLineWidth(context.resources.getDimension(R.dimen.route_line_width_cut))
-    }
 }
