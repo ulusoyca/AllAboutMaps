@@ -26,7 +26,6 @@ import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxHuaweiBinding
 import com.ulusoy.allaboutmaps.domain.entities.LatLng as DomainLatLng
 import com.ulusoy.allaboutmaps.domain.entities.Point
-import com.ulusoy.allaboutmaps.main.extensions.toHuaweiLatLng
 import com.ulusoy.allaboutmaps.main.gpx.BaseGpxMapProviderFragment
 
 class GpxHuaweiFragment : BaseGpxMapProviderFragment() {
@@ -79,4 +78,9 @@ class GpxHuaweiFragment : BaseGpxMapProviderFragment() {
                 .position(latLng.toHuaweiLatLng())
         )
     }
+
+    private fun DomainLatLng.toHuaweiLatLng() = LatLng(
+        latitude.value.toDouble(),
+        longitude.value.toDouble()
+    )
 }

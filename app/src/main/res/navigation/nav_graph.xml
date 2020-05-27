@@ -26,7 +26,11 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_fragmentGpx"
-            app:destination="@id/fragmentGpx" />
+            app:destination="@id/fragmentGpx">
+            <argument
+                android:name="mapProvider"
+                app:argType="com.ulusoy.allaboutmaps.domain.entities.MapProvider"/>
+        </action>
     </fragment>
     <fragment
         android:id="@+id/fragmentGpx"

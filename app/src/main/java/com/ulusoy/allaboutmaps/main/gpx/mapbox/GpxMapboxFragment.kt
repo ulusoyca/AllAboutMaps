@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.annotation.LineManager
@@ -32,7 +33,6 @@ import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxMapboxBinding
 import com.ulusoy.allaboutmaps.domain.entities.LatLng as DomainLatLng
 import com.ulusoy.allaboutmaps.domain.entities.Point
-import com.ulusoy.allaboutmaps.main.extensions.toMapboxLatLng
 import com.ulusoy.allaboutmaps.main.gpx.BaseGpxMapProviderFragment
 
 private const val CHECK_POINT_IMAGE_ID = "CHECK_POINT_IMAGE_ID"
@@ -88,4 +88,9 @@ class GpxMapboxFragment : BaseGpxMapProviderFragment() {
             .withIconColor("#FFFFFF")
         symbolManager?.create(symbolOptions)
     }
+
+    private fun DomainLatLng.toMapboxLatLng() = LatLng(
+        latitude.value.toDouble(),
+        longitude.value.toDouble()
+    )
 }

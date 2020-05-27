@@ -33,7 +33,7 @@ abstract class HomeModule {
             Topic(
                 title = R.string.title_route_from_gpx,
                 description = R.string.description_route_from_gpx,
-                image = R.drawable.gpx_map_parse
+                image = R.drawable.gpx_preview
             )
         )
     }

@@ -20,14 +20,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentHomeBinding
+import com.ulusoy.allaboutmaps.domain.entities.MapProvider
 import com.ulusoy.allaboutmaps.main.Topic
 import com.ulusoy.allaboutmaps.main.home.epoxy.HomeEpoxyController
 import dagger.android.support.DaggerFragment
+import java.lang.IllegalArgumentException
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -58,15 +59,30 @@ class HomeFragment : DaggerFragment(), TopicSelectedListener {
         binding.recyclerView.setController(controller)
     }
 
+    private val defaultSelectedMapProvider = MapProvider.MAPBOX
+
     override fun onTopicSelected(topicTitle: Int) {
-        val direction: NavDirections? = when (topicTitle) {
-            R.string.title_route_from_gpx -> HomeFragmentDirections.actionHomeToFragmentGpx()
-            else -> null
-        }
-        if (direction == null) {
-            Toast.makeText(context, R.string.not_implemented, Toast.LENGTH_LONG).show()
-        } else {
-            findNavController().navigate(direction)
+        findNavController().navigate(getNavigationDirection(topicTitle, defaultSelectedMapProvider))
+    }
+
+    override fun onTopicSelectedWithHuaweiMap(topicTitle: Int) {
+        findNavController().navigate(getNavigationDirection(topicTitle, MapProvider.HUAWEI))
+    }
+
+    override fun onTopicSelectedWithGoogleMap(topicTitle: Int) {
+        findNavController().navigate(getNavigationDirection(topicTitle, MapProvider.GOOGLE))
+    }
+
+    override fun onTopicSelectedWithMapboxMap(topicTitle: Int) {
+        findNavController().navigate(getNavigationDirection(topicTitle, MapProvider.MAPBOX))
+    }
+
+    private fun getNavigationDirection(topicTitle: Int, mapProvider: MapProvider): NavDirections {
+        return when (topicTitle) {
+            R.string.title_route_from_gpx -> HomeFragmentDirections.actionHomeToFragmentGpx(mapProvider)
+            else -> {
+                throw IllegalArgumentException()
+            }
         }
     }
 }

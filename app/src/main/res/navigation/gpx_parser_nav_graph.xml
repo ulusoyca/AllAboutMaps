@@ -17,12 +17,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:startDestination="@+id/mapboxFragment">
-
-
     <fragment
         android:id="@+id/mapboxFragment"
         android:name="com.ulusoy.allaboutmaps.main.gpx.mapbox.GpxMapboxFragment"
         android:label="MapboxFragment" >
+        <action
+            android:id="@+id/action_mapboxFragment_to_huaweiFragment"
+            app:destination="@id/huaweiFragment" />
+        <action
+            android:id="@+id/action_mapboxFragment_to_googleFragment"
+            app:destination="@id/googleFragment" />
     </fragment>
     <fragment
         android:id="@+id/googleFragment"

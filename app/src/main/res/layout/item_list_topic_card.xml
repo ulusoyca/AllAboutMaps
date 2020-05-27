@@ -45,10 +45,10 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 app:imageResource="@{topic.image}"
                 tools:contentDescription="@string/description_route_from_gpx"
-                tools:srcCompat="@android:drawable/zoom_plate" />
+                tools:srcCompat="@drawable/gpx_preview" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,6 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/mapbox"
+                    android:onClick="@{() -> topicSelectedListener.onTopicSelectedWithMapboxMap(topic.title)}"
                     app:layout_constraintEnd_toStartOf="@+id/action_google"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/google"
+                    android:onClick="@{() -> topicSelectedListener.onTopicSelectedWithGoogleMap(topic.title)}"
                     app:layout_constraintEnd_toStartOf="@+id/action_huawei"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/action_mapbox"
@@ -110,6 +112,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/huawei"
+                    android:onClick="@{() -> topicSelectedListener.onTopicSelectedWithHuaweiMap(topic.title)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/action_google"

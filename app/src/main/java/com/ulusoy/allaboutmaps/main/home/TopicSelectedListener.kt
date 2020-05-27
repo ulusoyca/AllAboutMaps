@@ -20,4 +20,7 @@ import androidx.annotation.StringRes
 
 interface TopicSelectedListener {
     fun onTopicSelected(@StringRes topicTitle: Int)
+    fun onTopicSelectedWithHuaweiMap(@StringRes topicTitle: Int)
+    fun onTopicSelectedWithGoogleMap(@StringRes topicTitle: Int)
+    fun onTopicSelectedWithMapboxMap(@StringRes topicTitle: Int)
 }

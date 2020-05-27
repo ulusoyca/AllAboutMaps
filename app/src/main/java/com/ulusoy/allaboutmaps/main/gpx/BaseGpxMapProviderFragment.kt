@@ -19,6 +19,8 @@ package com.ulusoy.allaboutmaps.main.gpx
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,20 +30,19 @@ import com.ulusoy.allaboutmaps.domain.entities.Point
 import com.ulusoy.allaboutmaps.main.ui.AllAboutMapView
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
-import javax.inject.Named
 
 abstract class BaseGpxMapProviderFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    @Named(NAMED_FOOD_STATION_BITMAP)
-    lateinit var foodStationIcon: Bitmap
+    val foodStationIcon: Bitmap by lazy {
+        ContextCompat.getDrawable(requireContext(), R.drawable.ic_food_white)!!.toBitmap()
+    }
 
-    @JvmField
-    @field:[Inject Named(NAMED_MAP_LINE_COLOR)]
-    var mapLineColor: Int = 0
+    val mapLineColor: Int by lazy {
+        ContextCompat.getColor(requireContext(), R.color.map_route_cut_line_color)
+    }
 
     private val viewModel: GpxViewModel by viewModels { viewModelFactory }
 

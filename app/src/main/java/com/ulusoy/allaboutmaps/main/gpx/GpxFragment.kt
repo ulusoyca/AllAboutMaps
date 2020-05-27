@@ -24,6 +24,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxBinding
+import com.ulusoy.allaboutmaps.domain.entities.MapProvider
+import com.ulusoy.allaboutmaps.main.gpx.mapbox.GpxMapboxFragmentDirections
 import dagger.android.support.DaggerFragment
 
 class GpxFragment : DaggerFragment() {
@@ -44,5 +46,19 @@ class GpxFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = requireActivity().findNavController(R.id.gpx_parser_nav_host_fragment)
         binding.bottomNav.setupWithNavController(navController)
+        (arguments?.getSerializable("mapProvider") as? MapProvider)?.let {
+            when (it) {
+                MapProvider.HUAWEI -> navController.navigate(
+                    GpxMapboxFragmentDirections.actionMapboxFragmentToHuaweiFragment()
+                )
+                MapProvider.GOOGLE -> navController.navigate(
+                    GpxMapboxFragmentDirections.actionMapboxFragmentToGoogleFragment()
+                )
+                else -> {
+                    // Here the start destination is Mapbox Fragment. The directions should be from it.
+                    // That's why we don't do anything when it is Mapbox
+                }
+            }
+        }
     }
 }

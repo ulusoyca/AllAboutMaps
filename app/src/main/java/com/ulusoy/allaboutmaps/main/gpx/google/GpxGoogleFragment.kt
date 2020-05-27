@@ -26,7 +26,6 @@ import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxGoogleBinding
 import com.ulusoy.allaboutmaps.domain.entities.LatLng as DomainLatLng
 import com.ulusoy.allaboutmaps.domain.entities.Point
-import com.ulusoy.allaboutmaps.main.extensions.toGoogleLatLng
 import com.ulusoy.allaboutmaps.main.gpx.BaseGpxMapProviderFragment
 
 class GpxGoogleFragment : BaseGpxMapProviderFragment() {
@@ -79,4 +78,9 @@ class GpxGoogleFragment : BaseGpxMapProviderFragment() {
                 .position(latLng.toGoogleLatLng())
         )
     }
+
+    private fun DomainLatLng.toGoogleLatLng() = LatLng(
+        latitude.value.toDouble(),
+        longitude.value.toDouble()
+    )
 }
