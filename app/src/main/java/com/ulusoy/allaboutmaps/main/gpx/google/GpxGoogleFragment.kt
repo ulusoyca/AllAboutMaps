@@ -30,8 +30,8 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxGoogleBinding
+import com.ulusoy.allaboutmaps.main.extensions.toGoogleLatLng
 import com.ulusoy.allaboutmaps.main.gpx.GpxViewModel
-import com.ulusoy.allaboutmaps.main.gpx.toGoogleLatLng
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import timber.log.Timber
@@ -69,7 +69,12 @@ class GpxGoogleFragment : DaggerFragment() {
                 val latLngs = routePoints.map { it.latLng.toGoogleLatLng() }
                 map?.addPolyline(
                     PolylineOptions()
-                        .color(ContextCompat.getColor(requireContext(), R.color.map_route_cut_line_color))
+                        .color(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.map_route_cut_line_color
+                            )
+                        )
                         .jointType(JointType.ROUND)
                         .width(resources.getDimension(R.dimen.google_route_line_width_cut))
                         .addAll(latLngs)
@@ -79,7 +84,7 @@ class GpxGoogleFragment : DaggerFragment() {
     }
 
     private fun onMapReady(map: GoogleMap) {
-        Timber.d("mapbox map style is loaded")
+        Timber.d("google map style is loaded")
         this.map = map
         val mapStyleOptions = MapStyleOptions.loadRawResourceStyle(
             requireContext(),

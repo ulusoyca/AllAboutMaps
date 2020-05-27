@@ -13,15 +13,12 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<com.mapbox.mapboxsdk.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+<com.huawei.hms.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mapView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    mapbox:mapbox_compassAnimationEnabled="false"
-    mapbox:mapbox_cameraTargetLat="38.631155965849757"
-    mapbox:mapbox_cameraTargetLng="34.909409992396832"
-    mapbox:mapbox_cameraZoom="10.0"
-    mapbox:mapbox_uiAttribution="false"
-    mapbox:mapbox_uiLogo="false"
-    mapbox:mapbox_uiRotateGestures="false" />
+    map:cameraTargetLat="38.631155965849757"
+    map:cameraTargetLng="34.909409992396832"
+    map:cameraZoom="11.0"
+    map:mapType="normal" />

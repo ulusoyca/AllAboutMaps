@@ -20,6 +20,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'org.jmailen.kotlinter'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "com.huawei.agconnect"
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -49,10 +50,25 @@ android {
         enabled = true
     }
 
+    signingConfigs {
+        release {
+            storeFile file('all-about-maps.jks')
+            keyAlias 'all-about-maps'
+            keyPassword '123456'
+            storePassword '123456'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
     buildTypes {
-        debug {}
+        debug {
+            signingConfig signingConfigs.release
+            debuggable true
+        }
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         dexOptions {
@@ -113,6 +129,9 @@ dependencies {
 
     // GMS
     implementation "com.google.android.gms:play-services-maps:$gms_maps_version"
+
+    // HUAWEI
+    implementation "com.huawei.hms:maps:$huawei_maps_version"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"

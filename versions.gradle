@@ -64,6 +64,9 @@ ext {
     // GMS
     gms_maps_version = "17.0.0"
 
+    // HUAWEI
+    huawei_maps_version = "4.0.1.302"
+
     // GPX parser
     jodaVersion = "2.10.3"
     gpxParserVersion = "1.6.0"

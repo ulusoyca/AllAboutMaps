@@ -32,8 +32,8 @@ import com.mapbox.mapboxsdk.style.layers.Property
 import com.mapbox.mapboxsdk.utils.ColorUtils
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxMapboxBinding
+import com.ulusoy.allaboutmaps.main.extensions.toMapboxLatLng
 import com.ulusoy.allaboutmaps.main.gpx.GpxViewModel
-import com.ulusoy.allaboutmaps.main.gpx.toMapboxLatLng
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import timber.log.Timber

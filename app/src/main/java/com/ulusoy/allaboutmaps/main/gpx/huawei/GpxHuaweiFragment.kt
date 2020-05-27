@@ -20,12 +20,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.huawei.hms.maps.HuaweiMap
+import com.huawei.hms.maps.model.JointType
+import com.huawei.hms.maps.model.MapStyleOptions
+import com.huawei.hms.maps.model.PolylineOptions
+import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGpxHuaweiBinding
+import com.ulusoy.allaboutmaps.main.extensions.toHuaweiLatLng
 import com.ulusoy.allaboutmaps.main.gpx.GpxViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+import timber.log.Timber
 
 class GpxHuaweiFragment : DaggerFragment() {
 
@@ -35,6 +44,8 @@ class GpxHuaweiFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel: GpxViewModel by viewModels { viewModelFactory }
+
+    private var map: HuaweiMap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,5 +59,58 @@ class GpxHuaweiFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.mapView.run {
+            onCreate(savedInstanceState)
+            getMapAsync { onMapReady(it) }
+        }
+
+        with(viewModel) {
+            routePoints.observe(viewLifecycleOwner, Observer { routePoints ->
+                val latLngs = routePoints.map { it.latLng.toHuaweiLatLng() }
+                map?.addPolyline(
+                    PolylineOptions()
+                        .color(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.map_route_cut_line_color
+                            )
+                        )
+                        .jointType(JointType.ROUND)
+                        .width(resources.getDimension(R.dimen.google_route_line_width_cut))
+                        .addAll(latLngs)
+                )
+            })
+        }
+    }
+
+    private fun onMapReady(map: HuaweiMap) {
+        Timber.d("huawei map style is loaded")
+        this.map = map
+        val mapStyleOptions = MapStyleOptions.loadRawResourceStyle(
+            requireContext(),
+            R.raw.google_maps_dark_style
+        )
+        map.setMapStyle(mapStyleOptions)
+        viewModel.parseGpxFile(R.raw.cut)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.mapView.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.mapView.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.mapView.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.mapView.onDestroy()
     }
 }
