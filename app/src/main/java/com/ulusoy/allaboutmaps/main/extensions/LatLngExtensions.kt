@@ -14,16 +14,24 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.di
+package com.ulusoy.allaboutmaps.main.extensions
 
-import com.ulusoy.allaboutmaps.datasource.routeinfo.datasource.gpx.GpxFileParser
-import com.ulusoy.allaboutmaps.gpx.LocalGpxFileParser
-import dagger.Binds
-import dagger.Module
+import com.google.android.gms.maps.model.LatLng as GoogleLatLang
+import com.huawei.hms.maps.model.LatLng as HuaweiLatLng
+import com.mapbox.mapboxsdk.geometry.LatLng as MapboxLatLng
+import com.ulusoy.allaboutmaps.domain.entities.LatLng
 
-@Module
-abstract class ParserModule {
-    // Use @Binds to tell Dagger which implementation it needs to use when providing an interface.
-    @Binds
-    abstract fun provideParserRepository(datasource: LocalGpxFileParser): GpxFileParser
-}
+fun LatLng.toMapboxLatLng() = MapboxLatLng(
+    latitude.value.toDouble(),
+    longitude.value.toDouble()
+)
+
+fun LatLng.toHuaweiLatLng() = HuaweiLatLng(
+    latitude.value.toDouble(),
+    longitude.value.toDouble()
+)
+
+fun LatLng.toGoogleLatLng() = GoogleLatLang(
+    latitude.value.toDouble(),
+    longitude.value.toDouble()
+)

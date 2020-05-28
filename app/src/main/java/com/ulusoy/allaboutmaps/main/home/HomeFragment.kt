@@ -24,7 +24,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentHomeBinding
-import com.ulusoy.allaboutmaps.domain.entities.MapProvider
+import com.ulusoy.allaboutmaps.main.MapProvider
 import com.ulusoy.allaboutmaps.main.Topic
 import com.ulusoy.allaboutmaps.main.home.epoxy.HomeEpoxyController
 import dagger.android.support.DaggerFragment
@@ -79,7 +79,7 @@ class HomeFragment : DaggerFragment(), TopicSelectedListener {
 
     private fun getNavigationDirection(topicTitle: Int, mapProvider: MapProvider): NavDirections {
         return when (topicTitle) {
-            R.string.title_route_from_gpx -> HomeFragmentDirections.actionHomeToFragmentGpx(mapProvider)
+            R.string.title_route_from_gpx -> HomeFragmentDirections.actionHomeToFragmentRouteInfo(mapProvider)
             else -> {
                 throw IllegalArgumentException()
             }

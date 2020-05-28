@@ -17,11 +17,11 @@
 package com.ulusoy.allaboutmaps.main
 
 import com.ulusoy.allaboutmaps.ActivityScope
-import com.ulusoy.allaboutmaps.main.gpx.GpxFragmentModule
-import com.ulusoy.allaboutmaps.main.gpx.google.GpxGoogleFragmentModule
-import com.ulusoy.allaboutmaps.main.gpx.huawei.GpxHuaweiFragmentModule
-import com.ulusoy.allaboutmaps.main.gpx.mapbox.GpxMapboxFragmentModule
 import com.ulusoy.allaboutmaps.main.home.HomeFragmentModule
+import com.ulusoy.allaboutmaps.main.routeinfo.RouteInfoFragmentModule
+import com.ulusoy.allaboutmaps.main.routeinfo.google.RouteInfoGoogleFragmentModule
+import com.ulusoy.allaboutmaps.main.routeinfo.huawei.RouteInfoHuaweiFragmentModule
+import com.ulusoy.allaboutmaps.main.routeinfo.mapbox.RouteInfoMapboxFragmentModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -31,11 +31,11 @@ abstract class MainActivityModule {
     @ContributesAndroidInjector(
         modules = [
             HomeFragmentModule::class,
-            GpxFragmentModule::class,
+            RouteInfoFragmentModule::class,
             MainModule::class,
-            GpxMapboxFragmentModule::class,
-            GpxHuaweiFragmentModule::class,
-            GpxGoogleFragmentModule::class
+            RouteInfoMapboxFragmentModule::class,
+            RouteInfoHuaweiFragmentModule::class,
+            RouteInfoGoogleFragmentModule::class
         ]
     )
     abstract fun contributeMainActivityInjector(): MainActivity

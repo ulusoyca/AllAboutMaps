@@ -16,14 +16,21 @@
 
 package com.ulusoy.allaboutmaps.main.di
 
-import com.ulusoy.allaboutmaps.datasource.routeinfo.datasource.gpx.GpxFileParser
-import com.ulusoy.allaboutmaps.gpx.LocalGpxFileParser
+import com.ulusoy.allaboutmaps.datasource.routeinfo.RouteInfoDataRepository
+import com.ulusoy.allaboutmaps.datasource.routeinfo.datasource.RouteInfoDatasource
+import com.ulusoy.allaboutmaps.datasource.routeinfo.datasource.gpx.GpxFileDatasource
+import com.ulusoy.allaboutmaps.domain.RouteInfoRepository
 import dagger.Binds
 import dagger.Module
+import javax.inject.Named
 
 @Module
-abstract class ParserModule {
+abstract class DatasourceModule {
     // Use @Binds to tell Dagger which implementation it needs to use when providing an interface.
     @Binds
-    abstract fun provideParserRepository(datasource: LocalGpxFileParser): GpxFileParser
+    abstract fun provideRouteInfoRepository(repository: RouteInfoDataRepository): RouteInfoRepository
+
+    @Binds
+    @Named("GPX_DATA_SOURCE")
+    abstract fun provideRouteInfoDataSource(datasource: GpxFileDatasource): RouteInfoDatasource
 }

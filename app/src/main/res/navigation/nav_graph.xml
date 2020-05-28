@@ -25,15 +25,15 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_home_to_fragmentGpx"
-            app:destination="@id/fragmentGpx">
+            android:id="@+id/action_home_to_fragmentRouteInfo"
+            app:destination="@id/fragmentRouteInfo">
             <argument
                 android:name="mapProvider"
-                app:argType="com.ulusoy.allaboutmaps.domain.entities.MapProvider"/>
+                app:argType="com.ulusoy.allaboutmaps.main.MapProvider"/>
         </action>
     </fragment>
     <fragment
-        android:id="@+id/fragmentGpx"
-        android:name="com.ulusoy.allaboutmaps.main.gpx.GpxFragment"
+        android:id="@+id/fragmentRouteInfo"
+        android:name="com.ulusoy.allaboutmaps.main.routeinfo.RouteInfoFragment"
         android:label="@string/title_route_from_gpx" />
 </navigation>

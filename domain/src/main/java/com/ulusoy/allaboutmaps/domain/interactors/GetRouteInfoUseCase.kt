@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.di
+package com.ulusoy.allaboutmaps.domain.interactors
 
-import com.ulusoy.allaboutmaps.datasource.routeinfo.datasource.gpx.GpxFileParser
-import com.ulusoy.allaboutmaps.gpx.LocalGpxFileParser
-import dagger.Binds
-import dagger.Module
+import com.ulusoy.allaboutmaps.domain.RouteInfoRepository
+import com.ulusoy.allaboutmaps.domain.entities.RouteInfo
+import javax.inject.Inject
 
-@Module
-abstract class ParserModule {
-    // Use @Binds to tell Dagger which implementation it needs to use when providing an interface.
-    @Binds
-    abstract fun provideParserRepository(datasource: LocalGpxFileParser): GpxFileParser
+class GetRouteInfoUseCase
+@Inject constructor(
+    private val routeInfoRepository: RouteInfoRepository
+) {
+    suspend operator fun invoke(): RouteInfo {
+        return routeInfoRepository.getRouteInfo()
+    }
 }

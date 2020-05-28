@@ -19,8 +19,8 @@ package com.ulusoy.allaboutmaps.domain.entities
 data class Point(
     val latitude: Latitude,
     val longitude: Longitude,
-    val altitude: Float,
-    val name: String = ""
+    val altitude: Float? = null,
+    val name: String? = null
 ) {
     val latLng: LatLng
         get() = LatLng(latitude, longitude)

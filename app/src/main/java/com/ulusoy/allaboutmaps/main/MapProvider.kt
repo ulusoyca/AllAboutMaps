@@ -14,16 +14,10 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.di
+package com.ulusoy.allaboutmaps.main
 
-import com.ulusoy.allaboutmaps.datasource.routeinfo.datasource.gpx.GpxFileParser
-import com.ulusoy.allaboutmaps.gpx.LocalGpxFileParser
-import dagger.Binds
-import dagger.Module
-
-@Module
-abstract class ParserModule {
-    // Use @Binds to tell Dagger which implementation it needs to use when providing an interface.
-    @Binds
-    abstract fun provideParserRepository(datasource: LocalGpxFileParser): GpxFileParser
+enum class MapProvider {
+    GOOGLE,
+    HUAWEI,
+    MAPBOX
 }

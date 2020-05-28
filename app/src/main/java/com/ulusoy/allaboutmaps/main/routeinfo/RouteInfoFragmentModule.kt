@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.di
+package com.ulusoy.allaboutmaps.main.routeinfo
 
-import com.ulusoy.allaboutmaps.datasource.routeinfo.datasource.gpx.GpxFileParser
-import com.ulusoy.allaboutmaps.gpx.LocalGpxFileParser
-import dagger.Binds
+import com.ulusoy.allaboutmaps.FragmentScope
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ParserModule {
-    // Use @Binds to tell Dagger which implementation it needs to use when providing an interface.
-    @Binds
-    abstract fun provideParserRepository(datasource: LocalGpxFileParser): GpxFileParser
+abstract class RouteInfoFragmentModule {
+    @FragmentScope
+    @ContributesAndroidInjector()
+    abstract fun bindConjugationFragment(): RouteInfoFragment
 }
