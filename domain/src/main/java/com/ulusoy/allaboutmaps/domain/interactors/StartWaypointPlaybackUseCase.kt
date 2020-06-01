@@ -14,16 +14,21 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.routeinfo.google
+package com.ulusoy.allaboutmaps.domain.interactors
 
-import com.ulusoy.allaboutmaps.FragmentScope
-import com.ulusoy.allaboutmaps.main.routeinfo.RouteInfoModule
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import com.ulusoy.allaboutmaps.domain.RouteInfoRepository
+import com.ulusoy.allaboutmaps.domain.entities.Point
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-@Module
-abstract class RouteInfoGoogleFragmentModule {
-    @FragmentScope
-    @ContributesAndroidInjector(modules = [RouteInfoModule::class])
-    abstract fun bindFragment(): RouteInfoGoogleFragment
+class StartWaypointPlaybackUseCase
+@Inject constructor(
+    private val routeInfoRepository: RouteInfoRepository
+) {
+    suspend operator fun invoke(
+        points: List<Point>,
+        updateInterval: Long
+    ): Flow<Point> {
+        return routeInfoRepository.startWaypointPlayback(points, updateInterval)
+    }
 }

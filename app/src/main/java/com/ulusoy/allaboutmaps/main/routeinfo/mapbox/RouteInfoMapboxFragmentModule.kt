@@ -25,5 +25,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class RouteInfoMapboxFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [RouteInfoModule::class])
-    abstract fun bindConjugationFragment(): RouteInfoMapboxFragment
+    abstract fun bindFragment(): RouteInfoMapboxFragment
 }

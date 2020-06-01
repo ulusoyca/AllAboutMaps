@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.routeinfo.google
+package com.ulusoy.allaboutmaps.main.camerabound
 
+import androidx.lifecycle.ViewModel
 import com.ulusoy.allaboutmaps.FragmentScope
-import com.ulusoy.allaboutmaps.main.routeinfo.RouteInfoModule
+import com.ulusoy.allaboutmaps.ViewModelKey
+import dagger.Binds
 import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 
 @Module
-abstract class RouteInfoGoogleFragmentModule {
+abstract class CameraBoundModule {
     @FragmentScope
-    @ContributesAndroidInjector(modules = [RouteInfoModule::class])
-    abstract fun bindFragment(): RouteInfoGoogleFragment
+    @Binds
+    @IntoMap
+    @ViewModelKey(CameraBoundViewModel::class)
+    abstract fun bindViewModel(viewModel: CameraBoundViewModel): ViewModel
 }

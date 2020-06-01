@@ -20,12 +20,15 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.AttributeSet
+import com.huawei.hms.maps.CameraUpdateFactory
 import com.huawei.hms.maps.HuaweiMap
 import com.huawei.hms.maps.MapView
 import com.huawei.hms.maps.model.*
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
+import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
 import com.ulusoy.allaboutmaps.main.extensions.toHuaweiLatLng
+import com.ulusoy.allaboutmaps.main.extensions.toHuaweiLatLngBounds
 
 class HuaweiMapView
 @JvmOverloads constructor(
@@ -59,6 +62,18 @@ class HuaweiMapView
                 .jointType(JointType.ROUND)
                 .width(resources.getDimension(R.dimen.huawei_route_line_width_cut))
                 .addAll(latLngs.map { it.toHuaweiLatLng() })
+        )
+    }
+
+    override fun moveCamera(latLng: LatLng) {
+        throw NotImplementedError()
+    }
+
+    override fun moveCamera(latLngBounds: LatLngBounds) {
+        map?.moveCamera(
+            CameraUpdateFactory.newLatLngBounds(
+                latLngBounds.toHuaweiLatLngBounds(), 0
+            )
         )
     }
 

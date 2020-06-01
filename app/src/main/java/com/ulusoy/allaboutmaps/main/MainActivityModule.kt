@@ -17,6 +17,10 @@
 package com.ulusoy.allaboutmaps.main
 
 import com.ulusoy.allaboutmaps.ActivityScope
+import com.ulusoy.allaboutmaps.main.camerabound.CameraBoundFragmentModule
+import com.ulusoy.allaboutmaps.main.camerabound.google.CameraBoundGoogleFragmentModule
+import com.ulusoy.allaboutmaps.main.camerabound.huawei.CameraBoundHuaweiFragmentModule
+import com.ulusoy.allaboutmaps.main.camerabound.mapbox.CameraBoundMapboxFragmentModule
 import com.ulusoy.allaboutmaps.main.home.HomeFragmentModule
 import com.ulusoy.allaboutmaps.main.routeinfo.RouteInfoFragmentModule
 import com.ulusoy.allaboutmaps.main.routeinfo.google.RouteInfoGoogleFragmentModule
@@ -32,10 +36,14 @@ abstract class MainActivityModule {
         modules = [
             HomeFragmentModule::class,
             RouteInfoFragmentModule::class,
+            CameraBoundFragmentModule::class,
             MainModule::class,
             RouteInfoMapboxFragmentModule::class,
             RouteInfoHuaweiFragmentModule::class,
-            RouteInfoGoogleFragmentModule::class
+            RouteInfoGoogleFragmentModule::class,
+            CameraBoundGoogleFragmentModule::class,
+            CameraBoundHuaweiFragmentModule::class,
+            CameraBoundMapboxFragmentModule::class
         ]
     )
     abstract fun contributeMainActivityInjector(): MainActivity
