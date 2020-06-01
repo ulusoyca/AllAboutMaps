@@ -21,12 +21,15 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.AttributeSet
 import androidx.annotation.ColorRes
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.*
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
+import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
 import com.ulusoy.allaboutmaps.main.extensions.toGoogleLatLng
+import com.ulusoy.allaboutmaps.main.extensions.toGoogleLatLngBounds
 
 class GoogleMapView
 @JvmOverloads constructor(
@@ -37,14 +40,37 @@ class GoogleMapView
 
     private var map: GoogleMap? = null
 
-    override fun onMapViewCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) }
-    override fun onMapViewStart() { super.onStart() }
-    override fun onMapViewStop() { super.onStop() }
-    override fun onMapViewResume() { super.onResume() }
-    override fun onMapViewPause() { super.onPause() }
-    override fun onMapViewDestroy() { super.onDestroy() }
-    override fun onMapViewSaveInstanceState(savedInstanceState: Bundle?) { super.onSaveInstanceState() }
-    override fun onMapViewLowMemory() { super.onLowMemory() }
+    override fun onMapViewCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onMapViewStart() {
+        super.onStart()
+    }
+
+    override fun onMapViewStop() {
+        super.onStop()
+    }
+
+    override fun onMapViewResume() {
+        super.onResume()
+    }
+
+    override fun onMapViewPause() {
+        super.onPause()
+    }
+
+    override fun onMapViewDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onMapViewSaveInstanceState(savedInstanceState: Bundle?) {
+        super.onSaveInstanceState()
+    }
+
+    override fun onMapViewLowMemory() {
+        super.onLowMemory()
+    }
 
     fun onMapReady(map: GoogleMap) {
         this.map = map
@@ -62,6 +88,19 @@ class GoogleMapView
                 .addAll(latLngs.map { it.toGoogleLatLng() })
         )
     }
+
+    override fun moveCamera(latLng: LatLng) {
+        throw NotImplementedError()
+    }
+
+    override fun moveCamera(latLngBounds: LatLngBounds) {
+        map?.moveCamera(
+            CameraUpdateFactory.newLatLngBounds(
+                latLngBounds.toGoogleLatLngBounds(), 0
+            )
+        )
+    }
+
 
     override fun drawMarker(latLng: LatLng, icon: Bitmap, name: String?) {
         var markerOptions = MarkerOptions()

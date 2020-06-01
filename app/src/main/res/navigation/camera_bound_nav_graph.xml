@@ -1,0 +1,39 @@
+<!--
+  ~ Copyright 2020 Cagatay Ulusoy (Ulus Oy Apps). All rights reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@+id/cameraBoundMapboxFragment">
+    <fragment
+        android:id="@+id/cameraBoundMapboxFragment"
+        android:name="com.ulusoy.allaboutmaps.main.camerabound.mapbox.CameraBoundMapboxFragment"
+        android:label="CameraBoundMapboxFragment">
+        <action
+            android:id="@+id/action_cameraBoundMapboxFragment_to_cameraBoundGoogleFragment"
+            app:destination="@id/cameraBoundGoogleFragment" />
+        <action
+            android:id="@+id/action_cameraBoundMapboxFragment_to_cameraBoundHuaweiFragment"
+            app:destination="@id/cameraBoundHuaweiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraBoundGoogleFragment"
+        android:name="com.ulusoy.allaboutmaps.main.camerabound.google.CameraBoundGoogleFragment"
+        android:label="CameraBoundGoogleFragment" />
+    <fragment
+        android:id="@+id/cameraBoundHuaweiFragment"
+        android:name="com.ulusoy.allaboutmaps.main.camerabound.huawei.CameraBoundHuaweiFragment"
+        android:label="CameraBoundHuaweiFragment" />
+</navigation>
