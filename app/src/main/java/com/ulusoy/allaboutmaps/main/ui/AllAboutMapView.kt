@@ -20,6 +20,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.annotation.ColorRes
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
+import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
 
 interface AllAboutMapView {
     fun onMapViewCreate(savedInstanceState: Bundle?)
@@ -31,5 +32,7 @@ interface AllAboutMapView {
     fun onMapViewSaveInstanceState(savedInstanceState: Bundle?)
     fun onMapViewLowMemory()
     fun drawPolyline(latLngs: List<LatLng>, @ColorRes mapLineColor: Int)
+    fun moveCamera(latLng: LatLng)
+    fun moveCamera(latLngBounds: LatLngBounds)
     fun drawMarker(latLng: LatLng, icon: Bitmap, name: String?)
 }

@@ -16,8 +16,14 @@
 
 package com.ulusoy.allaboutmaps.domain
 
+import com.ulusoy.allaboutmaps.domain.entities.Point
 import com.ulusoy.allaboutmaps.domain.entities.RouteInfo
+import kotlinx.coroutines.flow.Flow
 
 interface RouteInfoRepository {
     suspend fun getRouteInfo(): RouteInfo
+    suspend fun startWaypointPlayback(
+        points: List<Point>,
+        updateInterval: Long
+    ): Flow<Point>
 }

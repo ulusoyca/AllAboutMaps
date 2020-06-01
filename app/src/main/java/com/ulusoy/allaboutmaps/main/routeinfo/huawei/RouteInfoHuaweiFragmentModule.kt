@@ -25,5 +25,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class RouteInfoHuaweiFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [RouteInfoModule::class])
-    abstract fun bindConjugationFragment(): RouteInfoHuaweiFragment
+    abstract fun bindFragment(): RouteInfoHuaweiFragment
 }

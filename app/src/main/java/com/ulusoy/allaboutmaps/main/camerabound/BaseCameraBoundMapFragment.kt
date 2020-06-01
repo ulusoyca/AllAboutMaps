@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.routeinfo
+package com.ulusoy.allaboutmaps.main.camerabound
 
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
@@ -26,11 +27,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.main.common.MapLifecycleHandlerFragment
-import com.ulusoy.allaboutmaps.main.ui.AllAboutMapView
-import dagger.android.support.DaggerFragment
+import com.ulusoy.allaboutmaps.main.extensions.toBounds
 import javax.inject.Inject
 
-abstract class BaseRouteInfoMapFragment : MapLifecycleHandlerFragment() {
+private const val PLAYBACK_GPS_INTERVAL = 2000L
+
+abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -43,21 +45,29 @@ abstract class BaseRouteInfoMapFragment : MapLifecycleHandlerFragment() {
         ContextCompat.getColor(requireContext(), R.color.map_route_cut_line_color)
     }
 
-    private val viewModel: RouteInfoViewModel by viewModels { viewModelFactory }
+    private val viewModel: CameraBoundViewModel by viewModels { viewModelFactory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewModel) {
-            routePoints.observe(viewLifecycleOwner, Observer { routePoints ->
-                mapView.drawPolyline(routePoints.map { it.latLng }, mapLineColor)
+            playbackStatus.observe(viewLifecycleOwner, Observer { status ->
+                val msg = when(status) {
+                    PlaybackStatus.STARTED -> {
+                        mapView.drawPolyline(emptyList(), mapLineColor)
+                        R.string.playback_started
+                    }
+                    PlaybackStatus.COMPLETED -> R.string.playback_finished
+                }
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
             })
-            waypoints.observe(viewLifecycleOwner, Observer { waypoints ->
-                waypoints.forEach { mapView.drawMarker(it.latLng, foodStationIcon, it.name) }
+            waypointLatLngs.observe(viewLifecycleOwner, Observer {
+                mapView.drawMarker(latLng = it.latLng, icon = foodStationIcon, name = it.name)
+                mapView.moveCamera(it.latLng.toBounds(2000.0))
             })
         }
     }
 
     protected fun onMapStyleLoaded() {
-        viewModel.getRouteInfo()
+        viewModel.startPlayback(PLAYBACK_GPS_INTERVAL)
     }
 }

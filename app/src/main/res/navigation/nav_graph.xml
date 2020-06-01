@@ -29,11 +29,22 @@
             app:destination="@id/fragmentRouteInfo">
             <argument
                 android:name="mapProvider"
-                app:argType="com.ulusoy.allaboutmaps.main.MapProvider"/>
+                app:argType="com.ulusoy.allaboutmaps.main.MapProvider" />
+        </action>
+        <action
+            android:id="@+id/action_home_to_cameraBoundFragment"
+            app:destination="@id/cameraBoundFragment">
+            <argument
+                android:name="mapProvider"
+                app:argType="com.ulusoy.allaboutmaps.main.MapProvider" />
         </action>
     </fragment>
     <fragment
         android:id="@+id/fragmentRouteInfo"
         android:name="com.ulusoy.allaboutmaps.main.routeinfo.RouteInfoFragment"
         android:label="@string/title_route_from_gpx" />
+    <fragment
+        android:id="@+id/cameraBoundFragment"
+        android:name="com.ulusoy.allaboutmaps.main.camerabound.CameraBoundFragment"
+        android:label="@string/title_move_camera_bound" />
 </navigation>

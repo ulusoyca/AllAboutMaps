@@ -21,6 +21,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
@@ -32,7 +33,9 @@ import com.mapbox.mapboxsdk.style.layers.Property
 import com.mapbox.mapboxsdk.utils.ColorUtils
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
+import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
 import com.ulusoy.allaboutmaps.main.extensions.toMapboxLatLng
+import com.ulusoy.allaboutmaps.main.extensions.toMapbpoxLatLngBounds
 
 private const val CHECK_POINT_IMAGE_ID = "CHECK_POINT_IMAGE_ID"
 
@@ -72,6 +75,16 @@ class MapboxMapView
             .withLineWidth(resources.getDimension(R.dimen.mapbox_route_line_width_cut))
             .withLatLngs(latLngs.map { it.toMapboxLatLng() })
         lineManager?.create(lineOptions)
+    }
+
+    override fun moveCamera(latLng: LatLng) {
+        throw NotImplementedError()
+    }
+
+    override fun moveCamera(latLngBounds: LatLngBounds) {
+        map?.moveCamera(
+            CameraUpdateFactory.newLatLngBounds(latLngBounds.toMapbpoxLatLngBounds(), 0)
+        )
     }
 
     override fun drawMarker(latLng: LatLng, icon: Bitmap, name: String?) {
