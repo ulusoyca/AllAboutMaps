@@ -28,6 +28,7 @@ import com.ulusoy.allaboutmaps.domain.entities.MarkerOptions
 import com.ulusoy.allaboutmaps.main.common.MapLifecycleHandlerFragment
 import com.ulusoy.allaboutmaps.main.extensions.toBounds
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 private const val PLAYBACK_GPS_INTERVAL = 2000L
 private const val PLACE_STYLE_IMAGE_ID = "PLACE_STYLE_IMAGE_ID"
@@ -72,6 +73,8 @@ abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
     }
 
     protected fun onMapStyleLoaded() {
+        val padding = resources.getDimension(R.dimen.size_spacing_medium).roundToInt()
+        mapView.setMapPadding(padding, padding, padding, padding)
         viewModel.startPlayback(PLAYBACK_GPS_INTERVAL)
     }
 }

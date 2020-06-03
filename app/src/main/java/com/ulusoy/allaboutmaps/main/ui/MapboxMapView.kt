@@ -20,6 +20,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
+import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
@@ -49,14 +50,37 @@ class MapboxMapView
     private var map: MapboxMap? = null
     private var style: Style? = null
 
-    override fun onMapViewCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) }
-    override fun onMapViewStart() { super.onStart() }
-    override fun onMapViewStop() { super.onStop() }
-    override fun onMapViewResume() { super.onResume() }
-    override fun onMapViewPause() { super.onPause() }
-    override fun onMapViewDestroy() { super.onDestroy() }
-    override fun onMapViewSaveInstanceState(savedInstanceState: Bundle?) { super.onSaveInstanceState() }
-    override fun onMapViewLowMemory() { super.onLowMemory() }
+    override fun onMapViewCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onMapViewStart() {
+        super.onStart()
+    }
+
+    override fun onMapViewStop() {
+        super.onStop()
+    }
+
+    override fun onMapViewResume() {
+        super.onResume()
+    }
+
+    override fun onMapViewPause() {
+        super.onPause()
+    }
+
+    override fun onMapViewDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onMapViewSaveInstanceState(savedInstanceState: Bundle?) {
+        super.onSaveInstanceState()
+    }
+
+    override fun onMapViewLowMemory() {
+        super.onLowMemory()
+    }
 
     fun onMapReady(mapboxMap: MapboxMap) {
         map = mapboxMap
@@ -82,10 +106,26 @@ class MapboxMapView
         throw NotImplementedError()
     }
 
-    override fun moveCamera(latLngBounds: LatLngBounds) {
+    override fun moveCamera(latLngBounds: LatLngBounds, padding: Int) {
         map?.moveCamera(
-            CameraUpdateFactory.newLatLngBounds(latLngBounds.toMapbpoxLatLngBounds(), 0)
+            CameraUpdateFactory.newLatLngBounds(latLngBounds.toMapbpoxLatLngBounds(), padding)
         )
+    }
+
+    override fun setMapPadding(left: Int, right: Int, top: Int, bottom: Int) {
+        val currentCameraPosition = map?.cameraPosition
+        if (currentCameraPosition != null) {
+            // TODO Investigate why this implementation has no effect.
+            map?.cameraPosition = CameraPosition.Builder(currentCameraPosition)
+                .padding(
+                    doubleArrayOf(
+                        left.toDouble(),
+                        right.toDouble(),
+                        top.toDouble(),
+                        bottom.toDouble()
+                    )
+                ).build()
+        }
     }
 
     override fun drawMarker(markerOptions: MarkerOptions) {

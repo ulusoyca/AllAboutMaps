@@ -92,12 +92,16 @@ class GoogleMapView
         throw NotImplementedError()
     }
 
-    override fun moveCamera(latLngBounds: LatLngBounds) {
+    override fun moveCamera(latLngBounds: LatLngBounds, padding: Int) {
         map?.moveCamera(
             CameraUpdateFactory.newLatLngBounds(
-                latLngBounds.toGoogleLatLngBounds(), 0
+                latLngBounds.toGoogleLatLngBounds(), padding
             )
         )
+    }
+
+    override fun setMapPadding(left: Int, right: Int, top: Int, bottom: Int) {
+        map?.setPadding(left, right, top, bottom)
     }
 
     override fun drawMarker(markerOptions: DomainMarkerOptions) {

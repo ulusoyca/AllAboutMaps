@@ -33,6 +33,7 @@ interface AllAboutMapView {
     fun onMapViewLowMemory()
     fun drawPolyline(latLngs: List<LatLng>, @ColorRes mapLineColor: Int)
     fun moveCamera(latLng: LatLng)
-    fun moveCamera(latLngBounds: LatLngBounds)
+    fun moveCamera(latLngBounds: LatLngBounds, padding: Int = 0)
+    fun setMapPadding(left: Int = 0, right: Int = 0, top: Int = 0, bottom: Int = 0)
     fun drawMarker(markerOptions: MarkerOptions)
 }
