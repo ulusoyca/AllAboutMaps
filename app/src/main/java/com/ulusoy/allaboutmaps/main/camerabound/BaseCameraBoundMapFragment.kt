@@ -73,8 +73,7 @@ abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
     }
 
     protected fun onMapStyleLoaded() {
-        val padding = resources.getDimension(R.dimen.size_spacing_medium).roundToInt()
-        mapView.setMapPadding(padding, padding, padding, padding)
+        mapView.setMapPadding(top = 200, bottom = 400)
         viewModel.startPlayback(PLAYBACK_GPS_INTERVAL)
     }
 }
