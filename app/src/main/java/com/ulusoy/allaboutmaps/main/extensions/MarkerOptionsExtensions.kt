@@ -18,6 +18,7 @@ package com.ulusoy.allaboutmaps.main.extensions
 
 import android.content.Context
 import androidx.core.content.ContextCompat
+import com.huawei.hms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptorFactory as GoogleBitmapDescriptorFactory
 import com.google.android.gms.maps.model.MarkerOptions as GoogleMarkerOptions
 import com.huawei.hms.maps.model.BitmapDescriptorFactory as HuaweiBitmapDescriptorFactory
@@ -58,7 +59,8 @@ fun MarkerOptions.toGoogleMarkerOptions(): GoogleMarkerOptions {
     return markerOptions
 }
 
-fun MarkerOptions.toHuaweiMarkerOptions(): HuaweiMarkerOptions {
+fun MarkerOptions.toHuaweiMarkerOptions(applicationContext: Context): HuaweiMarkerOptions {
+    MapsInitializer.initialize(applicationContext)
     var markerOptions = HuaweiMarkerOptions()
         .icon(HuaweiBitmapDescriptorFactory.fromResource(iconResId))
         .position(latLng.toHuaweiLatLng())

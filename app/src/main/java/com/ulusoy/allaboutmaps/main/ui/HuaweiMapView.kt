@@ -104,6 +104,6 @@ class HuaweiMapView
     }
 
     override fun drawMarker(markerOptions: DomainMarkerOptions) {
-        map?.addMarker(markerOptions.toHuaweiMarkerOptions())?.showInfoWindow()
+        map?.addMarker(markerOptions.toHuaweiMarkerOptions(context.applicationContext))?.showInfoWindow()
     }
 }
