@@ -17,7 +17,6 @@
 package com.ulusoy.allaboutmaps.main.ui
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
@@ -28,27 +27,27 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.annotation.LineManager
 import com.mapbox.mapboxsdk.plugins.annotation.LineOptions
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager
-import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions
 import com.mapbox.mapboxsdk.style.layers.Property
 import com.mapbox.mapboxsdk.utils.ColorUtils
 import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
 import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
+import com.ulusoy.allaboutmaps.domain.entities.MarkerOptions
 import com.ulusoy.allaboutmaps.main.extensions.toMapboxLatLng
+import com.ulusoy.allaboutmaps.main.extensions.toMapboxSymbolOptions
 import com.ulusoy.allaboutmaps.main.extensions.toMapbpoxLatLngBounds
-
-private const val CHECK_POINT_IMAGE_ID = "CHECK_POINT_IMAGE_ID"
 
 class MapboxMapView
 @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : MapView(context, attrs, defStyleAttr), AllAboutMapView {
+) : MapView(context, attrs, defStyleAttr), AllAboutMapView, Style.OnStyleLoaded {
 
     private var lineManager: LineManager? = null
     private var symbolManager: SymbolManager? = null
     private var map: MapboxMap? = null
+    private var style: Style? = null
 
     override fun onMapViewCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) }
     override fun onMapViewStart() { super.onStart() }
@@ -59,13 +58,15 @@ class MapboxMapView
     override fun onMapViewSaveInstanceState(savedInstanceState: Bundle?) { super.onSaveInstanceState() }
     override fun onMapViewLowMemory() { super.onLowMemory() }
 
-    fun onMapReady(mapboxMap: MapboxMap, markerIcon: Bitmap) {
-        map = mapboxMap.apply {
-            setStyle(Style.Builder().fromUri(context.getString(R.string.mapbox_dark_map_style))) {
-                it.addImage(CHECK_POINT_IMAGE_ID, markerIcon)
-                lineManager = LineManager(this@MapboxMapView, mapboxMap, it)
-                symbolManager = SymbolManager(this@MapboxMapView, mapboxMap, it)
-            }
+    fun onMapReady(mapboxMap: MapboxMap) {
+        map = mapboxMap
+    }
+
+    override fun onStyleLoaded(style: Style) {
+        this.style = style
+        map?.let {
+            lineManager = LineManager(this@MapboxMapView, it, style)
+            symbolManager = SymbolManager(this@MapboxMapView, it, style)
         }
     }
 
@@ -87,14 +88,12 @@ class MapboxMapView
         )
     }
 
-    override fun drawMarker(latLng: LatLng, icon: Bitmap, name: String?) {
-        var symbolOptions = SymbolOptions()
-            .withIconImage(CHECK_POINT_IMAGE_ID)
-            .withLatLng(latLng.toMapboxLatLng())
-            .withIconColor("#FFFFFF")
-            .withTextColor("#FFFFFF")
-            .withTextOffset(arrayOf(1f, 1f))
-        symbolOptions = name?.run { symbolOptions.withTextField(name) }
-        symbolManager?.create(symbolOptions)
+    override fun drawMarker(markerOptions: MarkerOptions) {
+        style?.let {
+            symbolManager?.create(
+                markerOptions.toMapboxSymbolOptions(context, it)
+                    .withTextOffset(arrayOf(1f, 1f))
+            )
+        }
     }
 }

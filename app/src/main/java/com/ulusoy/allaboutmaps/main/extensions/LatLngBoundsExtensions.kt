@@ -16,10 +16,10 @@
 
 package com.ulusoy.allaboutmaps.main.extensions
 
-import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
 import com.google.android.gms.maps.model.LatLngBounds as GoogleLatLngBounds
 import com.huawei.hms.maps.model.LatLngBounds as HuaweiLatLngBounds
 import com.mapbox.mapboxsdk.geometry.LatLngBounds as MapboxLatLngBounds
+import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
 
 fun LatLngBounds.toGoogleLatLngBounds() = GoogleLatLngBounds(
     this.southwestCorner.toGoogleLatLng(),

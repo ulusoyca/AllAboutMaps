@@ -16,18 +16,10 @@
 
 package com.ulusoy.allaboutmaps.main.common
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.main.ui.AllAboutMapView
 import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 /**
  * The base fragment handles map lifecycle. To use it, the mapview classes should implement

@@ -20,6 +20,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.Style
+import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentRouteInfoMapboxBinding
 import com.ulusoy.allaboutmaps.main.routeinfo.BaseRouteInfoMapFragment
 
@@ -41,7 +44,16 @@ class RouteInfoMapboxFragment : BaseRouteInfoMapFragment() {
         mapView = binding.mapView
         super.onViewCreated(view, savedInstanceState)
         binding.mapView.getMapAsync { mapboxMap ->
-            binding.mapView.onMapReady(mapboxMap, foodStationIcon)
+            onMapReady(mapboxMap)
+        }
+    }
+
+    private fun onMapReady(mapboxMap: MapboxMap) {
+        binding.mapView.onMapReady(mapboxMap)
+        mapboxMap.setStyle(
+            Style.Builder().fromUri(requireContext().getString(R.string.mapbox_dark_map_style))
+        ) {
+            binding.mapView.onStyleLoaded(it)
             onMapStyleLoaded()
         }
     }

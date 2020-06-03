@@ -20,6 +20,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.Style
 import com.ulusoy.allaboutmaps.databinding.FragmentCameraBoundMapboxBinding
 import com.ulusoy.allaboutmaps.main.camerabound.BaseCameraBoundMapFragment
 
@@ -41,7 +43,14 @@ class CameraBoundMapboxFragment : BaseCameraBoundMapFragment() {
         mapView = binding.mapView
         super.onViewCreated(view, savedInstanceState)
         binding.mapView.getMapAsync { mapboxMap ->
-            binding.mapView.onMapReady(mapboxMap, foodStationIcon)
+            onMapReady(mapboxMap)
+        }
+    }
+
+    private fun onMapReady(mapboxMap: MapboxMap) {
+        binding.mapView.onMapReady(mapboxMap)
+        mapboxMap.setStyle(Style.OUTDOORS) {
+            binding.mapView.onStyleLoaded(it)
             onMapStyleLoaded()
         }
     }

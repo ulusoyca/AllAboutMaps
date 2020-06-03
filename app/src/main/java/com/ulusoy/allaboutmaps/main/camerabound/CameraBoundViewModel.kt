@@ -23,13 +23,13 @@ import androidx.lifecycle.viewModelScope
 import com.ulusoy.allaboutmaps.domain.entities.Point
 import com.ulusoy.allaboutmaps.domain.interactors.GetRouteInfoUseCase
 import com.ulusoy.allaboutmaps.domain.interactors.StartWaypointPlaybackUseCase
+import javax.inject.Inject
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @OptIn(InternalCoroutinesApi::class)
 class CameraBoundViewModel

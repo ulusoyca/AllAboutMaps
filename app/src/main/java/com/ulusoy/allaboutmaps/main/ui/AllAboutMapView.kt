@@ -16,11 +16,11 @@
 
 package com.ulusoy.allaboutmaps.main.ui
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.annotation.ColorRes
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
 import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
+import com.ulusoy.allaboutmaps.domain.entities.MarkerOptions
 
 interface AllAboutMapView {
     fun onMapViewCreate(savedInstanceState: Bundle?)
@@ -34,5 +34,5 @@ interface AllAboutMapView {
     fun drawPolyline(latLngs: List<LatLng>, @ColorRes mapLineColor: Int)
     fun moveCamera(latLng: LatLng)
     fun moveCamera(latLngBounds: LatLngBounds)
-    fun drawMarker(latLng: LatLng, icon: Bitmap, name: String?)
+    fun drawMarker(markerOptions: MarkerOptions)
 }

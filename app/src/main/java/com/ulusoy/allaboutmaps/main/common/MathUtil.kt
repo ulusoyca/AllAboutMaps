@@ -38,7 +38,7 @@ internal object MathUtil {
     /**
      * Wraps the given value into the inclusive-exclusive interval between min and max.
      *
-     * @param n   The value to wrap.
+     * @param n The value to wrap.
      * @param min The minimum.
      * @param max The maximum.
      */

@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package com.ulusoy.allaboutmaps.main.camerabound.mapbox
+package com.ulusoy.allaboutmaps.domain.entities
 
-import com.ulusoy.allaboutmaps.FragmentScope
-import com.ulusoy.allaboutmaps.main.camerabound.CameraBoundModule
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import com.ulusoy.allaboutmaps.domain.R
 
-@Module
-abstract class CameraBoundMapboxFragmentModule {
-    @FragmentScope
-    @ContributesAndroidInjector(modules = [CameraBoundModule::class])
-    abstract fun bindFragment(): CameraBoundMapboxFragment
-}
+data class MarkerOptions(
+    var latLng: LatLng,
+    var text: String? = null,
+    @DrawableRes var iconResId: Int,
+    var iconMapStyleId: String,
+    @ColorRes var iconColor: Int = R.color.black,
+    @ColorRes var textColor: Int = R.color.white,
+    var iconAlpha: Float = 1f,
+    var textAlpha: Float = 1f
+)

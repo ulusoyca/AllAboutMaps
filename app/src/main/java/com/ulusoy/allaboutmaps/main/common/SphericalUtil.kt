@@ -25,7 +25,6 @@ import com.ulusoy.allaboutmaps.main.common.MathUtil.havDistance
 import com.ulusoy.allaboutmaps.main.common.MathUtil.wrap
 import kotlin.math.*
 
-
 object SphericalUtil {
     /**
      * Returns the heading from one LatLng to another LatLng. Headings are
@@ -53,9 +52,9 @@ object SphericalUtil {
      * Returns the LatLng resulting from moving a distance from an origin
      * in the specified heading (expressed in degrees clockwise from north).
      *
-     * @param from     The LatLng from which to start.
+     * @param from The LatLng from which to start.
      * @param distance The distance to travel.
-     * @param heading  The heading in degrees clockwise from north.
+     * @param heading The heading in degrees clockwise from north.
      */
     fun computeOffset(from: LatLng, distance: Double, heading: Double): LatLng {
         var distance = distance
@@ -87,9 +86,9 @@ object SphericalUtil {
      * clockwise from North. This function returns null when no solution is
      * available.
      *
-     * @param to       The destination LatLng.
+     * @param to The destination LatLng.
      * @param distance The distance travelled, in meters.
-     * @param heading  The heading in degrees clockwise from north.
+     * @param heading The heading in degrees clockwise from north.
      */
     fun computeOffsetOrigin(to: LatLng, distance: Double, heading: Double): LatLng? {
         var distance = distance
@@ -138,8 +137,8 @@ object SphericalUtil {
      * Returns the LatLng which lies the given fraction of the way between the
      * origin LatLng and the destination LatLng.
      *
-     * @param from     The LatLng from which to start.
-     * @param to       The LatLng toward which to travel.
+     * @param from The LatLng from which to start.
+     * @param to The LatLng toward which to travel.
      * @param fraction A fraction of the distance to travel.
      * @return The interpolated LatLng.
      */

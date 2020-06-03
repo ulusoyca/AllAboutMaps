@@ -16,13 +16,13 @@
 
 package com.ulusoy.allaboutmaps.main.extensions
 
+import com.google.android.gms.maps.model.LatLng as GoogleLatLang
+import com.huawei.hms.maps.model.LatLng as HuaweiLatLng
+import com.mapbox.mapboxsdk.geometry.LatLng as MapboxLatLng
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
 import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
 import com.ulusoy.allaboutmaps.main.common.SphericalUtil.computeOffset
 import kotlin.math.sqrt
-import com.google.android.gms.maps.model.LatLng as GoogleLatLang
-import com.huawei.hms.maps.model.LatLng as HuaweiLatLng
-import com.mapbox.mapboxsdk.geometry.LatLng as MapboxLatLng
 
 fun LatLng.toMapboxLatLng() = MapboxLatLng(
     latitude.value.toDouble(),
@@ -51,4 +51,3 @@ fun LatLng.toBounds(radiusInMeters: Double): LatLngBounds {
         computeOffset(this, distanceFromCenterToCorner, 45.0)
     return LatLngBounds(southwestCorner, northeastCorner)
 }
-

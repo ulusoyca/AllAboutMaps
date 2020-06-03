@@ -16,30 +16,26 @@
 
 package com.ulusoy.allaboutmaps.main.camerabound
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ulusoy.allaboutmaps.R
+import com.ulusoy.allaboutmaps.domain.entities.MarkerOptions
 import com.ulusoy.allaboutmaps.main.common.MapLifecycleHandlerFragment
 import com.ulusoy.allaboutmaps.main.extensions.toBounds
 import javax.inject.Inject
 
 private const val PLAYBACK_GPS_INTERVAL = 2000L
+private const val PLACE_STYLE_IMAGE_ID = "PLACE_STYLE_IMAGE_ID"
 
 abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    val foodStationIcon: Bitmap by lazy {
-        ContextCompat.getDrawable(requireContext(), R.drawable.ic_food_white)!!.toBitmap()
-    }
 
     private val mapLineColor: Int by lazy {
         ContextCompat.getColor(requireContext(), R.color.map_route_cut_line_color)
@@ -51,7 +47,7 @@ abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
         super.onViewCreated(view, savedInstanceState)
         with(viewModel) {
             playbackStatus.observe(viewLifecycleOwner, Observer { status ->
-                val msg = when(status) {
+                val msg = when (status) {
                     PlaybackStatus.STARTED -> {
                         mapView.drawPolyline(emptyList(), mapLineColor)
                         R.string.playback_started
@@ -61,7 +57,15 @@ abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
                 Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
             })
             waypointLatLngs.observe(viewLifecycleOwner, Observer {
-                mapView.drawMarker(latLng = it.latLng, icon = foodStationIcon, name = it.name)
+                mapView.drawMarker(
+                    MarkerOptions(
+                        latLng = it.latLng,
+                        iconResId = R.drawable.food,
+                        text = it.name,
+                        iconMapStyleId = PLACE_STYLE_IMAGE_ID,
+                        textColor = R.color.black
+                    )
+                )
                 mapView.moveCamera(it.latLng.toBounds(2000.0))
             })
         }

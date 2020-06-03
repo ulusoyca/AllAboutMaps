@@ -21,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.gms.maps.model.*
+import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentRouteInfoGoogleBinding
 import com.ulusoy.allaboutmaps.main.routeinfo.BaseRouteInfoMapFragment
 
@@ -43,6 +44,9 @@ class RouteInfoGoogleFragment : BaseRouteInfoMapFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.mapView.getMapAsync { mapboxMap ->
             binding.mapView.onMapReady(mapboxMap)
+            val mapStyleOptions =
+                MapStyleOptions.loadRawResourceStyle(context, R.raw.google_maps_dark_style)
+            mapboxMap.setMapStyle(mapStyleOptions)
             onMapStyleLoaded()
         }
     }

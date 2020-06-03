@@ -20,7 +20,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.huawei.hms.maps.model.*
+import com.huawei.hms.maps.model.MapStyleOptions
+import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentRouteInfoHuaweiBinding
 import com.ulusoy.allaboutmaps.main.routeinfo.BaseRouteInfoMapFragment
 
@@ -43,6 +44,9 @@ class RouteInfoHuaweiFragment : BaseRouteInfoMapFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.mapView.getMapAsync { mapboxMap ->
             binding.mapView.onMapReady(mapboxMap)
+            val mapStyleOptions =
+                MapStyleOptions.loadRawResourceStyle(context, R.raw.huawei_maps_dark_style)
+            mapboxMap.setMapStyle(mapStyleOptions)
             onMapStyleLoaded()
         }
     }
