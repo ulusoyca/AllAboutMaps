@@ -31,7 +31,5 @@
     <dimen name="size_spacing_xxxsmall">1dp</dimen>
     <dimen name="size_spacing_zero">0dp</dimen>
 
-    <dimen name="mapbox_route_line_width_cut">2px</dimen>
-    <dimen name="google_route_line_width_cut">2dp</dimen>
-    <dimen name="huawei_route_line_width_cut">1dp</dimen>
+    <dimen name="route_line_width_cut">1dp</dimen>
 </resources>

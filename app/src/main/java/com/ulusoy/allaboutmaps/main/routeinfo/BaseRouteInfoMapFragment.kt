@@ -18,11 +18,11 @@ package com.ulusoy.allaboutmaps.main.routeinfo
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ulusoy.allaboutmaps.R
+import com.ulusoy.allaboutmaps.domain.entities.LineOptions
 import com.ulusoy.allaboutmaps.domain.entities.MarkerOptions
 import com.ulusoy.allaboutmaps.main.common.MapLifecycleHandlerFragment
 import javax.inject.Inject
@@ -34,27 +34,30 @@ abstract class BaseRouteInfoMapFragment : MapLifecycleHandlerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val mapLineColor: Int by lazy {
-        ContextCompat.getColor(requireContext(), R.color.map_route_cut_line_color)
-    }
-
     private val viewModel: RouteInfoViewModel by viewModels { viewModelFactory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewModel) {
             routePoints.observe(viewLifecycleOwner, Observer { routePoints ->
-                mapView.drawPolyline(routePoints.map { it.latLng }, mapLineColor)
+                mapView.drawPolyline(
+                    LineOptions(
+                        latLngs = routePoints.map { it.latLng },
+                        lineColor = R.color.map_route_cut_line_color,
+                        lineWidth = R.dimen.route_line_width_cut
+                    )
+                )
             })
             waypoints.observe(viewLifecycleOwner, Observer { waypoints ->
                 waypoints.forEach {
                     mapView.drawMarker(
                         MarkerOptions(
                             latLng = it.latLng,
-                            iconResId = R.drawable.food,
+                            iconResId = R.drawable.checkpoint,
                             text = it.name,
                             iconMapStyleId = CHECK_POINT_STYLE_IMAGE_ID,
-                            textColor = R.color.white
+                            textColor = R.color.white,
+                            iconColor = R.color.white
                         )
                     )
                 }

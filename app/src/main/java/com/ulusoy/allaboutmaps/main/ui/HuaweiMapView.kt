@@ -19,18 +19,19 @@ package com.ulusoy.allaboutmaps.main.ui
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
+import androidx.core.content.ContextCompat
 import com.huawei.hms.maps.CameraUpdateFactory
 import com.huawei.hms.maps.HuaweiMap
 import com.huawei.hms.maps.MapView
-import com.huawei.hms.maps.model.JointType
+import com.huawei.hms.maps.MapsInitializer
+import com.huawei.hms.maps.model.BitmapDescriptorFactory
+import com.huawei.hms.maps.model.LatLng as HuaweiLatLng
+import com.huawei.hms.maps.model.MarkerOptions as HuaweiMarkerOptions
 import com.huawei.hms.maps.model.PolylineOptions
-import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
 import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
+import com.ulusoy.allaboutmaps.domain.entities.LineOptions
 import com.ulusoy.allaboutmaps.domain.entities.MarkerOptions as DomainMarkerOptions
-import com.ulusoy.allaboutmaps.main.extensions.toHuaweiLatLng
-import com.ulusoy.allaboutmaps.main.extensions.toHuaweiLatLngBounds
-import com.ulusoy.allaboutmaps.main.extensions.toHuaweiMarkerOptions
 
 class HuaweiMapView
 @JvmOverloads constructor(
@@ -73,18 +74,12 @@ class HuaweiMapView
         super.onLowMemory()
     }
 
-    fun onMapReady(map: HuaweiMap) {
-        this.map = map
+    override fun drawPolyline(lineOptions: LineOptions) {
+        map?.addPolyline(lineOptions.toHuaweiLineOptions(context))
     }
 
-    override fun drawPolyline(latLngs: List<LatLng>, mapLineColor: Int) {
-        map?.addPolyline(
-            PolylineOptions()
-                .color(mapLineColor)
-                .jointType(JointType.ROUND)
-                .width(resources.getDimension(R.dimen.huawei_route_line_width_cut))
-                .addAll(latLngs.map { it.toHuaweiLatLng() })
-        )
+    fun onMapReady(map: HuaweiMap) {
+        this.map = map
     }
 
     override fun moveCamera(latLng: LatLng) {
@@ -104,6 +99,31 @@ class HuaweiMapView
     }
 
     override fun drawMarker(markerOptions: DomainMarkerOptions) {
-        map?.addMarker(markerOptions.toHuaweiMarkerOptions(context.applicationContext))?.showInfoWindow()
+        map?.addMarker(markerOptions.toHuaweiMarkerOptions(context))?.showInfoWindow()
     }
+
+    private fun LatLng.toHuaweiLatLng() = HuaweiLatLng(
+        latitude.value.toDouble(),
+        longitude.value.toDouble()
+    )
+
+    private fun LatLngBounds.toHuaweiLatLngBounds() = com.huawei.hms.maps.model.LatLngBounds(
+        southwestCorner.toHuaweiLatLng(),
+        northeastCorner.toHuaweiLatLng()
+    )
+
+    private fun DomainMarkerOptions.toHuaweiMarkerOptions(applicationContext: Context): HuaweiMarkerOptions {
+        MapsInitializer.initialize(applicationContext)
+        var markerOptions = HuaweiMarkerOptions()
+            .icon(BitmapDescriptorFactory.fromResource(iconResId))
+            .position(latLng.toHuaweiLatLng())
+            .alpha(iconAlpha)
+        markerOptions = text?.let { markerOptions.title(it) } ?: markerOptions
+        return markerOptions
+    }
+
+    private fun LineOptions.toHuaweiLineOptions(context: Context) = PolylineOptions()
+            .color(ContextCompat.getColor(context, lineColor))
+            .width(resources.getDimension(lineWidth))
+            .addAll(latLngs.map { it.toHuaweiLatLng() })
 }

@@ -19,19 +19,19 @@ package com.ulusoy.allaboutmaps.main.ui
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
-import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.model.JointType
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng as GoogleLatLang
+import com.google.android.gms.maps.model.LatLngBounds as GoogleLatLangBounds
+import com.google.android.gms.maps.model.MarkerOptions as GoogleMarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
-import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
 import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
+import com.ulusoy.allaboutmaps.domain.entities.LineOptions
 import com.ulusoy.allaboutmaps.domain.entities.MarkerOptions as DomainMarkerOptions
-import com.ulusoy.allaboutmaps.main.extensions.toGoogleLatLng
-import com.ulusoy.allaboutmaps.main.extensions.toGoogleLatLngBounds
-import com.ulusoy.allaboutmaps.main.extensions.toGoogleMarkerOptions
 
 class GoogleMapView
 @JvmOverloads constructor(
@@ -74,18 +74,12 @@ class GoogleMapView
         super.onLowMemory()
     }
 
-    fun onMapReady(map: GoogleMap) {
-        this.map = map
+    override fun drawPolyline(lineOptions: LineOptions) {
+        map?.addPolyline(lineOptions.toGoogleLineOptions(context))
     }
 
-    override fun drawPolyline(latLngs: List<LatLng>, @ColorRes mapLineColor: Int) {
-        map?.addPolyline(
-            PolylineOptions()
-                .color(mapLineColor)
-                .jointType(JointType.ROUND)
-                .width(resources.getDimension(R.dimen.google_route_line_width_cut))
-                .addAll(latLngs.map { it.toGoogleLatLng() })
-        )
+    fun onMapReady(map: GoogleMap) {
+        this.map = map
     }
 
     override fun moveCamera(latLng: LatLng) {
@@ -107,4 +101,28 @@ class GoogleMapView
     override fun drawMarker(markerOptions: DomainMarkerOptions) {
         map?.addMarker(markerOptions.toGoogleMarkerOptions())?.showInfoWindow()
     }
+
+    private fun LatLng.toGoogleLatLng() = GoogleLatLang(
+        latitude.value.toDouble(),
+        longitude.value.toDouble()
+    )
+
+    private fun DomainMarkerOptions.toGoogleMarkerOptions(): GoogleMarkerOptions {
+        var markerOptions = GoogleMarkerOptions()
+            .icon(BitmapDescriptorFactory.fromResource(iconResId))
+            .position(latLng.toGoogleLatLng())
+            .alpha(iconAlpha)
+        markerOptions = text?.let { markerOptions.title(it) } ?: markerOptions
+        return markerOptions
+    }
+
+    private fun LatLngBounds.toGoogleLatLngBounds() = GoogleLatLangBounds(
+            this.southwestCorner.toGoogleLatLng(),
+            northeastCorner.toGoogleLatLng()
+        )
+
+    private fun LineOptions.toGoogleLineOptions(context: Context) = PolylineOptions()
+        .color(ContextCompat.getColor(context, lineColor))
+        .width(resources.getDimension(lineWidth))
+        .addAll(latLngs.map { it.toGoogleLatLng() })
 }

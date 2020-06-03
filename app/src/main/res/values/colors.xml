@@ -21,4 +21,6 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="map_route_cut_line_color">#63D4FF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>

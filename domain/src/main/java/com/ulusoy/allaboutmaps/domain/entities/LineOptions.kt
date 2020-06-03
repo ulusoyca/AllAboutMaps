@@ -17,15 +17,12 @@
 package com.ulusoy.allaboutmaps.domain.entities
 
 import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
+import com.ulusoy.allaboutmaps.domain.R
 
-data class MarkerOptions(
-    var latLng: LatLng,
-    var text: String? = null,
-    @DrawableRes var iconResId: Int,
-    var iconMapStyleId: String,
-    @ColorRes var iconColor: Int,
-    @ColorRes var textColor: Int,
-    var iconAlpha: Float = 1f,
-    var textAlpha: Float = 1f
+data class LineOptions(
+    var latLngs: List<LatLng>,
+    @DimenRes var lineWidth: Int,
+    @ColorRes var lineColor: Int
 )

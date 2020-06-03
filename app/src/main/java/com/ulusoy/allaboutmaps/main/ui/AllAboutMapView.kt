@@ -17,9 +17,9 @@
 package com.ulusoy.allaboutmaps.main.ui
 
 import android.os.Bundle
-import androidx.annotation.ColorRes
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
 import com.ulusoy.allaboutmaps.domain.entities.LatLngBounds
+import com.ulusoy.allaboutmaps.domain.entities.LineOptions
 import com.ulusoy.allaboutmaps.domain.entities.MarkerOptions
 
 interface AllAboutMapView {
@@ -31,7 +31,7 @@ interface AllAboutMapView {
     fun onMapViewDestroy()
     fun onMapViewSaveInstanceState(savedInstanceState: Bundle?)
     fun onMapViewLowMemory()
-    fun drawPolyline(latLngs: List<LatLng>, @ColorRes mapLineColor: Int)
+    fun drawPolyline(lineOptions: LineOptions)
     fun moveCamera(latLng: LatLng)
     fun moveCamera(latLngBounds: LatLngBounds, padding: Int = 0)
     fun setMapPadding(left: Int = 0, right: Int = 0, top: Int = 0, bottom: Int = 0)

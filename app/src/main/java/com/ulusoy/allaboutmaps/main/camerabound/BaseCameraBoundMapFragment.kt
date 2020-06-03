@@ -49,10 +49,7 @@ abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
         with(viewModel) {
             playbackStatus.observe(viewLifecycleOwner, Observer { status ->
                 val msg = when (status) {
-                    PlaybackStatus.STARTED -> {
-                        mapView.drawPolyline(emptyList(), mapLineColor)
-                        R.string.playback_started
-                    }
+                    PlaybackStatus.STARTED -> R.string.playback_started
                     PlaybackStatus.COMPLETED -> R.string.playback_finished
                 }
                 Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
@@ -61,10 +58,11 @@ abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
                 mapView.drawMarker(
                     MarkerOptions(
                         latLng = it.latLng,
-                        iconResId = R.drawable.food,
+                        iconResId = R.drawable.checkpoint,
                         text = it.name,
                         iconMapStyleId = PLACE_STYLE_IMAGE_ID,
-                        textColor = R.color.black
+                        textColor = R.color.black,
+                        iconColor = R.color.white
                     )
                 )
                 mapView.moveCamera(it.latLng.toBounds(2000.0))

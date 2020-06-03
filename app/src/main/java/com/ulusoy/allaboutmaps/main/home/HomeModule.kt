@@ -38,7 +38,7 @@ abstract class HomeModule {
             Topic(
                 title = R.string.title_move_camera_bound,
                 description = R.string.description_move_camera_bound,
-                image = R.drawable.waypoint
+                image = R.drawable.bounded_area_preview
             )
         )
     }
