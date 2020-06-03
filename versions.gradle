@@ -58,14 +58,14 @@ ext {
     timber_version = "4.7.1"
 
     // Mapbox
-    mapboxSdkVersion = "9.1.0"
+    mapboxSdkVersion = "9.2.0"
     mapboxAnnotationVersion = "0.7.0"
 
     // GMS
     gms_maps_version = "17.0.0"
 
     // HUAWEI
-    huawei_maps_version = "4.0.1.302"
+    huawei_maps_version = "5.0.0.300"
 
     // GPX parser
     jodaVersion = "2.10.3"
