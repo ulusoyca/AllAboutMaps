@@ -39,8 +39,8 @@ class CameraBoundHuaweiFragment : BaseCameraBoundMapFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         mapView = binding.mapView
         super.onViewCreated(view, savedInstanceState)
-        binding.mapView.getMapAsync { mapboxMap ->
-            binding.mapView.onMapReady(mapboxMap)
+        binding.mapView.getMapAsync { huaweiMap ->
+            binding.mapView.onMapReady(huaweiMap)
             onMapStyleLoaded()
         }
     }

@@ -21,7 +21,7 @@
     <string name="description_route_from_gpx">In this tutorial we will first parse the route points from a gpx file and then show the route with waypoints on map.</string>
 
     <string name="title_move_camera_bound">Bounded Area</string>
-    <string name="description_move_camera_bound">In this tutorial we will move camera to series of attractions using LatLngBounds..</string>
+    <string name="description_move_camera_bound">In this tutorial we will move map camera to series of attraction points centered in a bounded.</string>
 
     <string name="not_implemented">Not implemented</string>
     <string name="playback_started">Playback started</string>

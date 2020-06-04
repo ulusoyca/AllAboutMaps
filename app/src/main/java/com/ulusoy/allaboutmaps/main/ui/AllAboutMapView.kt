@@ -32,8 +32,8 @@ interface AllAboutMapView {
     fun onMapViewSaveInstanceState(savedInstanceState: Bundle?)
     fun onMapViewLowMemory()
     fun drawPolyline(lineOptions: LineOptions)
+    fun drawMarker(markerOptions: MarkerOptions)
     fun moveCamera(latLng: LatLng)
     fun moveCamera(latLngBounds: LatLngBounds, padding: Int = 0)
     fun setMapPadding(left: Int = 0, right: Int = 0, top: Int = 0, bottom: Int = 0)
-    fun drawMarker(markerOptions: MarkerOptions)
 }

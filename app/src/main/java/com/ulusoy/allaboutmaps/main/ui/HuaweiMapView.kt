@@ -26,6 +26,7 @@ import com.huawei.hms.maps.MapView
 import com.huawei.hms.maps.MapsInitializer
 import com.huawei.hms.maps.model.BitmapDescriptorFactory
 import com.huawei.hms.maps.model.LatLng as HuaweiLatLng
+import com.huawei.hms.maps.model.LatLngBounds as HuaweiLatLngBounds
 import com.huawei.hms.maps.model.MarkerOptions as HuaweiMarkerOptions
 import com.huawei.hms.maps.model.PolylineOptions
 import com.ulusoy.allaboutmaps.domain.entities.LatLng
@@ -107,7 +108,7 @@ class HuaweiMapView
         longitude.value.toDouble()
     )
 
-    private fun LatLngBounds.toHuaweiLatLngBounds() = com.huawei.hms.maps.model.LatLngBounds(
+    private fun LatLngBounds.toHuaweiLatLngBounds() = HuaweiLatLngBounds(
         southwestCorner.toHuaweiLatLng(),
         northeastCorner.toHuaweiLatLng()
     )
@@ -117,7 +118,6 @@ class HuaweiMapView
         var markerOptions = HuaweiMarkerOptions()
             .icon(BitmapDescriptorFactory.fromResource(iconResId))
             .position(latLng.toHuaweiLatLng())
-            .alpha(iconAlpha)
         markerOptions = text?.let { markerOptions.title(it) } ?: markerOptions
         return markerOptions
     }

@@ -25,7 +25,5 @@ data class MarkerOptions(
     @DrawableRes var iconResId: Int,
     var iconMapStyleId: String,
     @ColorRes var iconColor: Int,
-    @ColorRes var textColor: Int,
-    var iconAlpha: Float = 1f,
-    var textAlpha: Float = 1f
+    @ColorRes var textColor: Int
 )

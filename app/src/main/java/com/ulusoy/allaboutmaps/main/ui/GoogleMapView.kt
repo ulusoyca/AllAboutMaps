@@ -111,7 +111,6 @@ class GoogleMapView
         var markerOptions = GoogleMarkerOptions()
             .icon(BitmapDescriptorFactory.fromResource(iconResId))
             .position(latLng.toGoogleLatLng())
-            .alpha(iconAlpha)
         markerOptions = text?.let { markerOptions.title(it) } ?: markerOptions
         return markerOptions
     }

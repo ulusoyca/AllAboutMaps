@@ -21,6 +21,9 @@ import com.ulusoy.allaboutmaps.domain.entities.Point
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Emits the list of waypoints with a given update interval
+ */
 class StartWaypointPlaybackUseCase
 @Inject constructor(
     private val routeInfoRepository: RouteInfoRepository

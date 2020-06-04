@@ -19,7 +19,6 @@ package com.ulusoy.allaboutmaps.main.camerabound
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -37,10 +36,6 @@ abstract class BaseCameraBoundMapFragment : MapLifecycleHandlerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val mapLineColor: Int by lazy {
-        ContextCompat.getColor(requireContext(), R.color.map_route_cut_line_color)
-    }
 
     private val viewModel: CameraBoundViewModel by viewModels { viewModelFactory }
 

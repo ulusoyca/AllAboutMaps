@@ -37,7 +37,7 @@ We need competition in the market! Let's switch easily when needed but how depen
 * import com.google.android.gms.maps.*
 * import com.mapbox.mapboxsdk.maps.*
 
-It should be noted that the way of achieving this in this post is just one proposal. There are always alternative and better ways of implementations. In the end, as software developers, we should deliver our tasks time-efficiently, without over-engineering.
+It should be noted that the way of achieving this is just one proposal. There are always alternative and better ways of implementations. In the end, as software developers, we should deliver our tasks time-efficiently, without over-engineering.
 
 ![Screenshots](Screenshots/home_1.png)
 

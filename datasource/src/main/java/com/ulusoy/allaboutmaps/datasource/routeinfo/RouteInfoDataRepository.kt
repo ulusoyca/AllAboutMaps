@@ -43,7 +43,8 @@ class RouteInfoDataRepository
         points: List<Point>,
         updateInterval: Long
     ): Flow<Point> = flow {
-        gpxFileDatasource.parseGpxFile().wayPoints.forEachIndexed { index, waypoint ->
+        val routeInfo = gpxFileDatasource.parseGpxFile()
+        routeInfo.wayPoints.forEachIndexed { index, waypoint ->
             if (index != 0) {
                 delay(updateInterval)
             }

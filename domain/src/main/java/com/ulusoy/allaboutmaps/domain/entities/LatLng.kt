@@ -27,7 +27,6 @@ data class LatLng(
         Latitude(latitude.toFloat()),
         Longitude(longitude.toFloat())
     )
-
     val latDoubleValue: Double
         get() = latitude.value.toDouble()
 

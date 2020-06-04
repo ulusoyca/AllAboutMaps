@@ -103,7 +103,9 @@ class MapboxMapView
 
     override fun moveCamera(latLngBounds: LatLngBounds, padding: Int) {
         map?.moveCamera(
-            CameraUpdateFactory.newLatLngBounds(latLngBounds.toMapboxLatLngBounds(), padding)
+            CameraUpdateFactory.newLatLngBounds(
+                latLngBounds.toMapboxLatLngBounds(), padding
+            )
         )
     }
 
@@ -171,8 +173,6 @@ class MapboxMapView
             .withLatLng(latLng.toMapboxLatLng())
             .withIconColor(iconColor)
             .withTextColor(textColor)
-            .withIconOpacity(iconAlpha)
-            .withTextOpacity(textAlpha)
         symbolOptions = text?.let { symbolOptions.withTextField(it) } ?: symbolOptions
         return symbolOptions
     }
