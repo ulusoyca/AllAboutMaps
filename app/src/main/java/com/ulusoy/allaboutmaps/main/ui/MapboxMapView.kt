@@ -148,10 +148,8 @@ class MapboxMapView
         southwestCorner.lngDoubleValue
     )
 
-    private fun LineOptions.toMapboxLineOptions(context: Context): com.mapbox.mapboxsdk.plugins.annotation.LineOptions? {
-        val color = ColorUtils.colorToRgbaString(
-            ContextCompat.getColor(context, lineColor)
-        )
+    private fun LineOptions.toMapboxLineOptions(context: Context): MapboxLineOptions {
+        val color = ColorUtils.colorToRgbaString(ContextCompat.getColor(context, lineColor))
         return MapboxLineOptions()
             .withLineColor(color)
             .withLineWidth(resources.getDimension(lineWidth))

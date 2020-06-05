@@ -33,12 +33,12 @@ object SphericalUtil {
      * in the specified heading (expressed in degrees clockwise from north).
      *
      * @param from The LatLng from which to start.
-     * @param distance The distance to travel.
-     * @param heading The heading in degrees clockwise from north.
+     * @param distanceToTravel The distance to travel.
+     * @param headingInDegrees The heading in degrees clockwise from north.
      */
-    fun computeOffset(from: LatLng, distance: Double, heading: Double): LatLng {
-        var distance = distance
-        var heading = heading
+    fun computeOffset(from: LatLng, distanceToTravel: Double, headingInDegrees: Double): LatLng {
+        var distance = distanceToTravel
+        var heading = headingInDegrees
         distance /= EARTH_RADIUS
         heading = Math.toRadians(heading)
         // http://williams.best.vwh.net/avform.htm#LL

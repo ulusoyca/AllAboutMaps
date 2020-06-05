@@ -113,8 +113,8 @@ class HuaweiMapView
         northeastCorner.toHuaweiLatLng()
     )
 
-    private fun DomainMarkerOptions.toHuaweiMarkerOptions(applicationContext: Context): HuaweiMarkerOptions {
-        MapsInitializer.initialize(applicationContext)
+    private fun DomainMarkerOptions.toHuaweiMarkerOptions(context: Context): HuaweiMarkerOptions {
+        BitmapDescriptorFactory.setContext(context)
         var markerOptions = HuaweiMarkerOptions()
             .icon(BitmapDescriptorFactory.fromResource(iconResId))
             .position(latLng.toHuaweiLatLng())
