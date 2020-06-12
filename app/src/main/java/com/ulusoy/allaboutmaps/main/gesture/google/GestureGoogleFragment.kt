@@ -20,12 +20,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
+import com.ulusoy.allaboutmaps.R
 import com.ulusoy.allaboutmaps.databinding.FragmentGestureGoogleBinding
+import com.ulusoy.allaboutmaps.main.MapProvider
 import com.ulusoy.allaboutmaps.main.common.MapLifecycleHandlerFragment
+import com.ulusoy.allaboutmaps.main.gesture.BaseGestureMapFragment
 import timber.log.Timber
 
-class GestureGoogleFragment : MapLifecycleHandlerFragment() {
+class GestureGoogleFragment : BaseGestureMapFragment() {
 
     private lateinit var binding: FragmentGestureGoogleBinding
 
@@ -50,15 +54,9 @@ class GestureGoogleFragment : MapLifecycleHandlerFragment() {
     private fun onMapReady(googleMap: GoogleMap) {
         binding.mapView.onMapReady(googleMap)
         googleMap.apply {
-            setOnCameraIdleListener {
-                Timber.d("[MAP-GOOGLE] onCameraIdle()")
-            }
-            setOnCameraMoveStartedListener {
-                Timber.d("[MAP-GOOGLE] onCameraMoveStarted()")
-            }
-            setOnCameraMoveCanceledListener {
-                Timber.d("[MAP-GOOGLE] onCameraMoveCancelled()")
-            }
+            setOnCameraIdleListener { onCameraIdle(MapProvider.GOOGLE) }
+            setOnCameraMoveStartedListener { onCameraMoveStared(MapProvider.GOOGLE) }
+            setOnCameraMoveCanceledListener { onCameraMoveCanceled(MapProvider.GOOGLE) }
         }
     }
 }

@@ -24,7 +24,11 @@
     <string name="description_move_camera_bound">In this tutorial we will move map camera to series of attraction points centered in a bounded.</string>
 
     <string name="title_gesture">Gestures</string>
-    <string name="description_gesture">In this tutorial we will move map camera to series of attraction points centered in a bounded.</string>
+    <string name="description_gesture">In this tutorial we will test map gestures and related callback methods.</string>
+
+    <string name="camera_move_started">"Camera MOVE STARTED</string>
+    <string name="camera_move_canceled">"Camera MOVE CANCELED</string>
+    <string name="camera_idle">"Camera IDLE</string>
 
     <string name="not_implemented">Not implemented</string>
     <string name="playback_started">Playback started</string>

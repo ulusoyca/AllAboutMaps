@@ -22,10 +22,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.huawei.hms.maps.HuaweiMap
 import com.ulusoy.allaboutmaps.databinding.FragmentGestureHuaweiBinding
+import com.ulusoy.allaboutmaps.main.MapProvider
 import com.ulusoy.allaboutmaps.main.common.MapLifecycleHandlerFragment
+import com.ulusoy.allaboutmaps.main.gesture.BaseGestureMapFragment
 import timber.log.Timber
 
-class GestureHuaweiFragment : MapLifecycleHandlerFragment() {
+class GestureHuaweiFragment : BaseGestureMapFragment() {
     private lateinit var binding: FragmentGestureHuaweiBinding
 
     override fun onCreateView(
@@ -47,15 +49,9 @@ class GestureHuaweiFragment : MapLifecycleHandlerFragment() {
     private fun onMapReady(huaweiMap: HuaweiMap) {
         binding.mapView.onMapReady(huaweiMap)
         huaweiMap.apply {
-            setOnCameraIdleListener {
-                Timber.d("[MAP-HUAWEI] onCameraIdle()")
-            }
-            setOnCameraMoveStartedListener {
-                Timber.d("[MAP-HUAWEI] onCameraMoveStarted()")
-            }
-            setOnCameraMoveCanceledListener {
-                Timber.d("[MAP-HUAWEI] onCameraMoveCancelled()")
-            }
+            setOnCameraIdleListener { onCameraIdle(MapProvider.HUAWEI) }
+            setOnCameraMoveStartedListener { onCameraMoveStared(MapProvider.HUAWEI) }
+            setOnCameraMoveCanceledListener { onCameraMoveCanceled(MapProvider.HUAWEI) }
         }
     }
 }

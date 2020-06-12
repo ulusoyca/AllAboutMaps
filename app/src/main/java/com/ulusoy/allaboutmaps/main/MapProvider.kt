@@ -16,8 +16,14 @@
 
 package com.ulusoy.allaboutmaps.main
 
-enum class MapProvider {
-    GOOGLE,
-    HUAWEI,
-    MAPBOX
+import androidx.annotation.StringRes
+import com.ulusoy.allaboutmaps.R
+import kotlinx.android.synthetic.main.item_list_topic_card.view.*
+
+enum class MapProvider(
+    @StringRes val providerNameResId: Int
+) {
+    GOOGLE(R.string.google),
+    HUAWEI(R.string.huawei),
+    MAPBOX(R.string.mapbox)
 }

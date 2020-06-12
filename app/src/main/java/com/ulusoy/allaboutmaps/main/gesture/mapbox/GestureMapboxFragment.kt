@@ -23,10 +23,12 @@ import android.view.ViewGroup
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.ulusoy.allaboutmaps.databinding.FragmentGestureMapboxBinding
+import com.ulusoy.allaboutmaps.main.MapProvider
 import com.ulusoy.allaboutmaps.main.common.MapLifecycleHandlerFragment
+import com.ulusoy.allaboutmaps.main.gesture.BaseGestureMapFragment
 import timber.log.Timber
 
-class GestureMapboxFragment : MapLifecycleHandlerFragment() {
+class GestureMapboxFragment : BaseGestureMapFragment() {
 
     private lateinit var binding: FragmentGestureMapboxBinding
 
@@ -52,15 +54,9 @@ class GestureMapboxFragment : MapLifecycleHandlerFragment() {
             binding.mapView.onStyleLoaded(it)
         }
         mapboxMap.apply {
-            addOnCameraIdleListener {
-                Timber.d("[MAP-MAPBOX] onCameraIdle()")
-            }
-            addOnCameraMoveStartedListener {
-                Timber.d("[MAP-MAPBOX] onCameraMoveStarted()")
-            }
-            addOnCameraMoveCancelListener {
-                Timber.d("[MAP-MAPBOX] onCameraMoveCancelled()")
-            }
+            addOnCameraIdleListener { onCameraIdle(MapProvider.MAPBOX) }
+            addOnCameraMoveStartedListener { onCameraMoveStared(MapProvider.MAPBOX) }
+            addOnCameraMoveCancelListener { onCameraMoveCanceled(MapProvider.MAPBOX) }
         }
     }
 }
