@@ -21,6 +21,10 @@ import com.ulusoy.allaboutmaps.main.camerabound.CameraBoundFragmentModule
 import com.ulusoy.allaboutmaps.main.camerabound.google.CameraBoundGoogleFragmentModule
 import com.ulusoy.allaboutmaps.main.camerabound.huawei.CameraBoundHuaweiFragmentModule
 import com.ulusoy.allaboutmaps.main.camerabound.mapbox.CameraBoundMapboxFragmentModule
+import com.ulusoy.allaboutmaps.main.gesture.GestureFragmentModule
+import com.ulusoy.allaboutmaps.main.gesture.google.GestureGoogleFragmentModule
+import com.ulusoy.allaboutmaps.main.gesture.huawei.GestureHuaweiFragmentModule
+import com.ulusoy.allaboutmaps.main.gesture.mapbox.GestureMapboxFragmentModule
 import com.ulusoy.allaboutmaps.main.home.HomeFragmentModule
 import com.ulusoy.allaboutmaps.main.routeinfo.RouteInfoFragmentModule
 import com.ulusoy.allaboutmaps.main.routeinfo.google.RouteInfoGoogleFragmentModule
@@ -43,7 +47,11 @@ abstract class MainActivityModule {
             RouteInfoGoogleFragmentModule::class,
             CameraBoundGoogleFragmentModule::class,
             CameraBoundHuaweiFragmentModule::class,
-            CameraBoundMapboxFragmentModule::class
+            CameraBoundMapboxFragmentModule::class,
+            GestureGoogleFragmentModule::class,
+        GestureMapboxFragmentModule::class,
+            GestureHuaweiFragmentModule::class,
+            GestureFragmentModule::class
         ]
     )
     abstract fun contributeMainActivityInjector(): MainActivity

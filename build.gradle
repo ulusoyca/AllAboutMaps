@@ -30,7 +30,7 @@ buildscript {
         def nav_version = "2.3.0-alpha06"
         def agc_version = "1.2.1.301"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath("org.jmailen.gradle:kotlinter-gradle:2.3.2")
         classpath "com.huawei.agconnect:agcp:$agc_version"  // HUAWEI agcp plugin

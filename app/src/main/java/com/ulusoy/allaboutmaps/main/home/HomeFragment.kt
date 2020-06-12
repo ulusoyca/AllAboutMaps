@@ -81,6 +81,7 @@ class HomeFragment : DaggerFragment(), TopicSelectedListener {
         return when (topicTitle) {
             R.string.title_route_from_gpx -> HomeFragmentDirections.actionHomeToFragmentRouteInfo(mapProvider)
             R.string.title_move_camera_bound -> HomeFragmentDirections.actionHomeToCameraBoundFragment(mapProvider)
+            R.string.title_gesture -> HomeFragmentDirections.actionHomeToGestureFragment(mapProvider)
             else -> {
                 throw IllegalArgumentException()
             }

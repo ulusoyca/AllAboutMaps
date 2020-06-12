@@ -39,6 +39,11 @@ abstract class HomeModule {
                 title = R.string.title_move_camera_bound,
                 description = R.string.description_move_camera_bound,
                 image = R.drawable.bounded_area_preview
+            ),
+            Topic(
+                title = R.string.title_gesture,
+                description = R.string.description_gesture,
+                image = R.drawable.gesture_preview
             )
         )
     }

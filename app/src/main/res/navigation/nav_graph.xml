@@ -38,6 +38,13 @@
                 android:name="mapProvider"
                 app:argType="com.ulusoy.allaboutmaps.main.MapProvider" />
         </action>
+        <action
+            android:id="@+id/action_home_to_gestureFragment"
+            app:destination="@id/gestureFragment">
+            <argument
+                android:name="mapProvider"
+                app:argType="com.ulusoy.allaboutmaps.main.MapProvider" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/fragmentRouteInfo"
@@ -47,4 +54,8 @@
         android:id="@+id/cameraBoundFragment"
         android:name="com.ulusoy.allaboutmaps.main.camerabound.CameraBoundFragment"
         android:label="@string/title_move_camera_bound" />
+    <fragment
+        android:id="@+id/gestureFragment"
+        android:name="com.ulusoy.allaboutmaps.main.gesture.GestureFragment"
+        android:label="GestureFragment" />
 </navigation>

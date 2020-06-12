@@ -23,7 +23,6 @@ import androidx.core.content.ContextCompat
 import com.huawei.hms.maps.CameraUpdateFactory
 import com.huawei.hms.maps.HuaweiMap
 import com.huawei.hms.maps.MapView
-import com.huawei.hms.maps.MapsInitializer
 import com.huawei.hms.maps.model.BitmapDescriptorFactory
 import com.huawei.hms.maps.model.LatLng as HuaweiLatLng
 import com.huawei.hms.maps.model.LatLngBounds as HuaweiLatLngBounds

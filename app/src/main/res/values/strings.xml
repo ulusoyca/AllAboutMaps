@@ -23,6 +23,9 @@
     <string name="title_move_camera_bound">Bounded Area</string>
     <string name="description_move_camera_bound">In this tutorial we will move map camera to series of attraction points centered in a bounded.</string>
 
+    <string name="title_gesture">Gestures</string>
+    <string name="description_gesture">In this tutorial we will move map camera to series of attraction points centered in a bounded.</string>
+
     <string name="not_implemented">Not implemented</string>
     <string name="playback_started">Playback started</string>
     <string name="playback_finished">Playback finished.</string>
