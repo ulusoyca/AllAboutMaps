@@ -57,5 +57,5 @@
     <fragment
         android:id="@+id/gestureFragment"
         android:name="com.ulusoy.allaboutmaps.main.gesture.GestureFragment"
-        android:label="GestureFragment" />
+        android:label="Gestures" />
 </navigation>
